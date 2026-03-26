@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --color-brand-purple: #6E026F;
+  --color-brand-teal: #ABDADC;
+  --color-brand-cream: #F1E6C9;
+  --color-brand-orange: #FA891A;
+  --color-brand-accent: #FA891A;
+  --color-brand-secondary: #ABDADC;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F1E6C9] text-[#1a1a1a] antialiased selection:bg-brand-purple/20;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(110, 2, 111, 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+  
+  .glass {
+    @apply bg-white/40 backdrop-blur-md border border-black/5 shadow-sm;
+  }
+}
