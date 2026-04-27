@@ -1,151 +1,183 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { ArrowRight, Instagram, Linkedin, Mail, Menu, Twitter, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Methodology', path: '/methodology' },
-  { name: 'Services', path: '/services' },
-  { name: 'Experiments', path: '/experiments' },
-  { name: 'Case Studies', path: '/case-studies' },
-  { name: 'About', path: '/about' },
-  { name: 'Insights', path: '/insights' },
+ { name: 'Services', path: '/services' },
+ { name: 'Methodology', path: '/methodology' },
+ { name: 'Case Studies', path: '/case-studies' },
+ { name: 'Insights', path: '/insights' },
+];
+
+const socialLinks = [
+  { name: 'LinkedIn', href: '#', icon: Linkedin },
+  { name: 'Twitter', href: '#', icon: Twitter },
+  { name: 'Instagram', href: '#', icon: Instagram },
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const location = useLocation();
+ const [isOpen, setIsOpen] = React.useState(false);
+ const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-[#F1E6C9]/80 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-[#6E026F] flex items-center justify-center rounded-sm group-hover:bg-brand-orange transition-colors">
-            <span className="text-white font-display font-black text-xl">L</span>
-          </div>
-          <span className="font-display font-bold text-xl tracking-tighter uppercase text-[#6E026F]">Levered</span>
+    <nav className="fixed top-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-[calc(100%-2rem)] max-w-[1180px] z-50 rounded-full border border-black/10 bg-white/76 shadow-[0_18px_60px_rgba(17,17,17,0.08)] backdrop-blur-2xl transition-all duration-300">
+      <div className="h-16 px-3 md:px-3 flex items-center justify-between">
+        <Link to="/" className="flex h-11 items-center rounded-full px-3 transition-colors hover:bg-black/[0.04] group">
+          <img src="/logo.png" alt="Levered" className="h-8 w-auto group-hover:opacity-90 transition-opacity" />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={cn(
-                "text-xs uppercase font-mono tracking-widest transition-colors",
-                location.pathname === item.path ? "text-brand-orange" : "text-[#6E026F]/60 hover:text-[#6E026F]"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center gap-3">
+          <div className="flex items-center gap-1 rounded-full border border-black/8 bg-black/[0.035] p-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-semibold transition-all",
+                  location.pathname === item.path
+                    ? "bg-white text-black shadow-sm shadow-black/5"
+                    : "text-black/48 hover:bg-white/70 hover:text-black"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
           <Link 
-            to="/contact" 
-            className="px-5 py-2 bg-[#6E026F] text-white text-xs uppercase font-mono font-bold hover:bg-brand-orange transition-all rounded-sm"
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-purple"
           >
-            Start System
+            Book Audit
+            <ArrowRight size={16} />
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-[#6E026F]" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-20 left-0 right-0 bg-[#F1E6C9] border-b border-black/5 p-6 space-y-4 shadow-lg"
+        <button 
+          className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className="block text-sm uppercase font-mono tracking-widest text-[#6E026F]/60"
-            >
-              {item.name}
-            </Link>
-          ))}
-          <Link 
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block w-full py-3 bg-[#6E026F] text-white text-center text-xs uppercase font-mono font-bold rounded-sm"
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="absolute top-full left-0 right-0 mt-2 overflow-hidden rounded-[28px] border border-black/10 bg-white/96 p-3 shadow-2xl shadow-black/10 backdrop-blur-xl"
           >
-            Contact
-          </Link>
-        </motion.div>
-      )}
+            {navItems.map((item, index) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "flex items-center justify-between rounded-2xl px-4 py-4 text-base font-semibold transition-colors",
+                  location.pathname === item.path ? "bg-[#f7f4ee] text-black" : "text-black/58 hover:bg-black/[0.04] hover:text-black"
+                )}
+              >
+                <span>{item.name}</span>
+                <span className="text-xs text-black/35">0{index + 1}</span>
+              </Link>
+            ))}
+            <Link 
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-center text-base font-semibold text-white"
+            >
+              Book Audit
+              <ArrowRight size={17} />
+            </Link>
+          </motion.div>
+        )}
+      </div>
     </nav>
-  );
+ );
 };
 
 export const Footer = () => {
-  return (
-    <footer className="border-t border-black/5 py-20 bg-[#F1E6C9]">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="space-y-6">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-[#6E026F] flex items-center justify-center rounded-sm">
-              <span className="text-white font-display font-black text-sm">L</span>
+ return (
+    <footer className="bg-white px-5 py-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1480px] rounded-[32px] bg-[#111111] px-7 py-8 text-white shadow-[0_20px_70px_rgba(17,17,17,0.14)] md:px-9 md:py-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.2fr_1fr_1fr] md:items-start">
+          <div>
+            <Link to="/" className="inline-flex items-center group">
+              <img src="/logo.png" alt="Levered" className="h-8 w-auto brightness-0 invert group-hover:opacity-80 transition-opacity" />
+            </Link>
+            <p className="mt-5 max-w-sm text-sm leading-6 text-white/52">
+              Measurement, experimentation, and AI workflows for high-growth teams.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-brand-yellow"
+            >
+              Book a growth audit
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="mb-4 text-xs font-semibold uppercase text-white/34">Explore</h4>
+              <ul className="space-y-3 text-sm font-semibold text-white/56">
+                <li><Link to="/services" className="transition-colors hover:text-white">Services</Link></li>
+                <li><Link to="/methodology" className="transition-colors hover:text-white">Methodology</Link></li>
+                <li><Link to="/case-studies" className="transition-colors hover:text-white">Case Studies</Link></li>
+                <li><Link to="/insights" className="transition-colors hover:text-white">Insights</Link></li>
+              </ul>
             </div>
-            <span className="font-display font-bold text-lg tracking-tighter uppercase text-[#6E026F]">Levered</span>
-          </Link>
-          <p className="text-[#6E026F]/60 text-sm leading-relaxed max-w-xs">
-            Growth is engineered. We build interoperable data systems and AI-powered optimization tools for high-growth companies.
-          </p>
-        </div>
-        
-        <div>
-          <h4 className="text-xs uppercase font-mono font-bold mb-6 text-[#6E026F]">Capabilities</h4>
-          <ul className="space-y-4 text-sm text-[#6E026F]/60 font-mono">
-            <li><Link to="/services" className="hover:text-brand-orange transition-colors">Paid Media</Link></li>
-            <li><Link to="/services" className="hover:text-brand-orange transition-colors">CRO Systems</Link></li>
-            <li><Link to="/services" className="hover:text-brand-orange transition-colors">Lifecycle Marketing</Link></li>
-            <li><Link to="/services" className="hover:text-brand-orange transition-colors">Attribution</Link></li>
-          </ul>
-        </div>
 
-        <div>
-          <h4 className="text-xs uppercase font-mono font-bold mb-6 text-[#6E026F]">Company</h4>
-          <ul className="space-y-4 text-sm text-[#6E026F]/60 font-mono">
-            <li><Link to="/about" className="hover:text-brand-orange transition-colors">About Us</Link></li>
-            <li><Link to="/experiments" className="hover:text-brand-orange transition-colors">Experiments</Link></li>
-            <li><Link to="/case-studies" className="hover:text-brand-orange transition-colors">Case Studies</Link></li>
-            <li><Link to="/insights" className="hover:text-brand-orange transition-colors">Insights</Link></li>
-          </ul>
-        </div>
+            <div>
+              <h4 className="mb-4 text-xs font-semibold uppercase text-white/34">Company</h4>
+              <ul className="space-y-3 text-sm font-semibold text-white/56">
+                <li><Link to="/about" className="transition-colors hover:text-white">About</Link></li>
+                <li><Link to="/experiments" className="transition-colors hover:text-white">Experiments</Link></li>
+                <li><Link to="/contact" className="transition-colors hover:text-white">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
 
-        <div>
-          <h4 className="text-xs uppercase font-mono font-bold mb-6 text-[#6E026F]">Newsletter</h4>
-          <p className="text-xs text-[#6E026F]/60 mb-4 font-mono">Technical growth systems delivered monthly.</p>
-          <div className="flex">
-            <input 
-              type="email" 
-              placeholder="Email" 
-              className="bg-white/50 border border-black/10 px-4 py-2 text-sm focus:outline-none focus:border-brand-orange w-full rounded-l-sm text-[#6E026F]"
-            />
-            <button className="bg-[#6E026F] text-white p-2 rounded-r-sm hover:bg-brand-orange transition-all">
-              <ArrowRight size={18} />
-            </button>
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase text-white/34">Newsletter</h4>
+            <p className="mb-4 text-sm leading-6 text-white/52">Technical growth systems, monthly.</p>
+            <div className="flex max-w-sm rounded-full border border-white/10 bg-white/[0.06] p-1">
+              <input
+                type="email"
+                placeholder="Email"
+                className="min-w-0 flex-1 bg-transparent px-4 py-2 text-sm text-white placeholder:text-white/32 focus:outline-none"
+              />
+              <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-colors hover:bg-brand-yellow">
+                <Mail size={17} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-[10px] font-mono text-[#6E026F]/40 uppercase tracking-widest">
-          © 2026 Levered Systems Inc. All rights reserved.
-        </p>
-        <div className="flex gap-6 text-[10px] font-mono text-[#6E026F]/40 uppercase tracking-widest">
-          <a href="#" className="hover:text-[#6E026F]">Privacy</a>
-          <a href="#" className="hover:text-[#6E026F]">Terms</a>
-          <a href="#" className="hover:text-[#6E026F]">Twitter</a>
-          <a href="#" className="hover:text-[#6E026F]">LinkedIn</a>
+
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs font-semibold text-white/34 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 Levered Systems Inc. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <a href="#" className="transition-colors hover:text-white">Privacy</a>
+            <a href="#" className="transition-colors hover:text-white">Terms</a>
+            <div className="mx-1 h-4 w-px bg-white/10" />
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  aria-label={social.name}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/48 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                >
+                  <Icon size={16} />
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </footer>

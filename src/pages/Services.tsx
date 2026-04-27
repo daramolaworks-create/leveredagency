@@ -1,159 +1,281 @@
-import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Zap, Target, BarChart3, Repeat, Layers, Database, Cpu, ArrowRight } from 'lucide-react';
-import { FunnelBreakdown, AttributionModel } from '../components/ui/InteractiveCharts';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  Check,
+  Database,
+  LineChart,
+  Repeat,
+  Target,
+  Zap,
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
 const services = [
   {
-    id: 'acquisition',
-    title: 'Paid Acquisition',
-    icon: <Zap />,
-    desc: 'Programmatic media buying systems that scale without efficiency decay.',
-    features: ['Meta & Google Ads', 'TikTok Performance', 'Programmatic Display', 'Creative Strategy'],
-    interactive: <AttributionModel />
+    title: 'Paid acquisition',
+    label: 'Acquire',
+    description: 'Media systems that connect spend to first-party revenue signals and high-value customer cohorts.',
+    icon: Zap,
+    image: '/images/team-services-systems.png',
+    points: ['Predictive bid strategy', 'Creative testing', 'Channel allocation'],
+    metric: '3.4x',
+    metricLabel: 'ROAS expansion',
   },
   {
-    id: 'conversion',
-    title: 'CRO Engineering',
-    icon: <Target />,
-    desc: 'Beyond A/B testing. We build statistical models to optimize every touchpoint.',
-    features: ['Landing Page Systems', 'Checkout Optimization', 'Personalization Engines', 'User Journey Mapping'],
-    interactive: <FunnelBreakdown />
+    title: 'Conversion systems',
+    label: 'Convert',
+    description: 'Landing, checkout, and product experiments designed around behavioral evidence and decision speed.',
+    icon: Target,
+    image: '/images/team-experiments-lab.png',
+    points: ['Landing systems', 'A/B/n testing', 'Journey personalization'],
+    metric: '+18%',
+    metricLabel: 'conversion lift',
   },
   {
-    id: 'retention',
-    title: 'Retention & Lifecycle',
-    icon: <Repeat />,
-    desc: 'Predictive modeling to identify churn risks and automate high-value loops.',
-    features: ['CRM Automation', 'LTV Prediction', 'Email & SMS Flows', 'Loyalty Systems'],
-    interactive: (
-      <div className="p-6 glass rounded-xl flex flex-col items-center justify-center h-full min-h-[250px] text-center">
-        <div className="w-16 h-16 rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-          <Repeat className="text-brand-accent animate-spin-slow" />
-        </div>
-        <h4 className="font-display font-bold uppercase mb-2">Compounding Retention</h4>
-        <p className="text-xs text-brand-secondary font-mono">Automated loops that increase LTV by 40% YoY.</p>
-      </div>
-    )
+    title: 'Lifecycle intelligence',
+    label: 'Retain',
+    description: 'Retention workflows that turn customer signals into timely messages, offers, and value moments.',
+    icon: Repeat,
+    image: '/images/team-about-global.png',
+    points: ['CRM automation', 'Churn prediction', 'LTV segmentation'],
+    metric: '34%',
+    metricLabel: 'revenue share',
   },
   {
-    id: 'measurement',
-    title: 'Measurement & Data',
-    icon: <BarChart3 />,
-    desc: 'Custom attribution models and server-side tracking for the post-cookie era.',
-    features: ['Server-side GTM', 'Custom Attribution', 'Data Warehousing', 'Marketing Mix Modeling'],
-    interactive: (
-      <div className="p-6 glass rounded-xl space-y-4">
-        <div className="flex justify-between items-end h-32 gap-2">
-          {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
-            <motion.div 
-              key={i}
-              initial={{ height: 0 }}
-              animate={{ height: `${h}%` }}
-              className="w-full bg-brand-purple/40 rounded-t-sm"
-            />
-          ))}
-        </div>
-        <div className="text-[10px] font-mono text-brand-secondary uppercase text-center">Real-time Attribution Stream</div>
-      </div>
-    )
-  }
+    title: 'Measurement and data',
+    label: 'Measure',
+    description: 'Attribution, tracking, and reporting infrastructure that makes every growth decision observable.',
+    icon: Database,
+    image: '/images/team-methodology-workshop.png',
+    points: ['Server-side tracking', 'Attribution models', 'Executive reporting'],
+    metric: '12ms',
+    metricLabel: 'signal latency',
+  },
 ];
+
+const process = [
+  {
+    title: 'Audit the system',
+    text: 'Map instrumentation, funnel economics, decision bottlenecks, and the highest-leverage constraint.',
+  },
+  {
+    title: 'Build the operating layer',
+    text: 'Connect dashboards, test queues, measurement logic, and weekly growth rituals.',
+  },
+  {
+    title: 'Activate and compound',
+    text: 'Ship improvements across acquisition, conversion, lifecycle, and reporting every week.',
+  },
+];
+
+const fadeIn = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.55, ease: 'easeOut' },
+};
+
+function ImagePanel({ src, label }: { src: string; label: string }) {
+  return (
+    <div className="relative min-h-[280px] overflow-hidden rounded-[26px] bg-black">
+      <img src={src} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+      <div className="absolute inset-x-5 bottom-5 flex items-center justify-between rounded-2xl border border-white/20 bg-white/16 px-4 py-3 text-white backdrop-blur-md">
+        <span className="text-xs font-semibold uppercase">{label}</span>
+        <ArrowUpRight size={16} />
+      </div>
+    </div>
+  );
+}
+
+function MiniModel({ active = 4 }: { active?: number }) {
+  const bars = [38, 58, 44, 72, 64, 86, 78, 94];
+
+  return (
+    <div className="rounded-[22px] bg-black p-4 text-white">
+      <div className="mb-4 flex items-center justify-between">
+        <span className="text-sm font-semibold text-white/58">Model signal</span>
+        <BarChart3 size={18} className="text-brand-yellow" />
+      </div>
+      <div className="flex h-20 items-end gap-2">
+        {bars.map((height, index) => (
+          <motion.span
+            key={index}
+            initial={{ height: 0 }}
+            whileInView={{ height: `${height}%` }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.04, duration: 0.5, ease: 'easeOut' }}
+            className={cn('w-full rounded-t-lg', index >= active ? 'bg-brand-yellow' : 'bg-white/18')}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export const Services = () => {
   return (
-    <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-32">
-      <header className="space-y-6 max-w-3xl">
-        <h1 className="text-6xl font-display font-black uppercase tracking-tighter text-[#6E026F]">
-          Growth <br /> Capabilities.
-        </h1>
-        <p className="text-[#6E026F]/70 text-xl leading-relaxed">
-          We deploy specialized growth units across the entire customer journey. Each capability is backed by custom-built data infrastructure.
-        </p>
-      </header>
+    <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
+      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
+        <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1fr_0.72fr]">
+          <motion.header
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+          >
+            <p className="mb-6 text-sm font-semibold uppercase text-brand-purple">Services</p>
+            <h1 className="max-w-5xl text-[clamp(2.85rem,5.2vw,5.6rem)] font-semibold leading-[0.94]">
+              Growth capabilities built to work together.
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+              We build acquisition, conversion, lifecycle, and measurement systems for teams that need growth to be cleaner, faster, and easier to prove.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-purple"
+              >
+                Book a growth audit
+                <ArrowUpRight size={18} />
+              </Link>
+              <Link
+                to="/methodology"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-7 py-4 text-sm font-semibold text-black transition-colors hover:bg-white"
+              >
+                See methodology
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </motion.header>
 
-      <div className="space-y-40">
-        {[
-          {
-            title: 'Acquisition Systems',
-            subtitle: 'Paid Media Engineering',
-            desc: 'We don\'t just "run ads." We build programmatic buying systems that leverage first-party data to find high-LTV customers at scale.',
-            features: ['Multi-channel Attribution', 'Creative Testing Frameworks', 'Predictive Bid Management'],
-            viz: <div className="h-40 w-full flex items-end gap-2">
-              {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${h}%` }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex-1 bg-[#6E026F] rounded-t-sm"
-                />
-              ))}
-            </div>
-          },
-          {
-            title: 'Conversion Systems',
-            subtitle: 'CRO & Product Engineering',
-            desc: 'Bridging the gap between marketing and product. We optimize every touchpoint from landing page to first-value delivery.',
-            features: ['A/B/n Testing', 'User Behavioral Analysis', 'Personalization Engines'],
-            viz: <div className="relative h-40 w-full flex items-center justify-center">
-              <div className="w-32 h-32 border-4 border-brand-orange rounded-full border-t-transparent animate-spin" />
-              <div className="absolute text-brand-orange font-display font-bold text-2xl">+24%</div>
-            </div>
-          },
-          {
-            title: 'Retention Systems',
-            subtitle: 'Lifecycle & CRM',
-            desc: 'Maximizing LTV through automated, data-driven communication. We build predictive models to identify and prevent churn before it happens.',
-            features: ['Churn Prediction Models', 'Automated Lifecycle Flows', 'LTV Segmentation'],
-            viz: <div className="h-40 w-full grid grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="glass rounded-lg flex items-center justify-center">
-                  <div className="w-8 h-8 rounded-full bg-[#ABDADC] animate-pulse" />
-                </div>
-              ))}
-            </div>
-          },
-          {
-            title: 'Measurement Systems',
-            subtitle: 'Data & Attribution',
-            desc: 'Custom attribution models and server-side tracking for the post-cookie era. We build the data warehouse and reporting systems that drive growth.',
-            features: ['Server-side GTM', 'Custom Attribution', 'Data Warehousing', 'Marketing Mix Modeling'],
-            viz: <div className="h-40 w-full flex items-center justify-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-[#6E026F]/10 flex items-center justify-center text-[#6E026F]"><Database size={24} /></div>
-              <ArrowRight size={16} className="text-brand-orange" />
-              <div className="w-12 h-12 rounded-lg bg-[#6E026F]/10 flex items-center justify-center text-[#6E026F]"><Cpu size={24} /></div>
-              <ArrowRight size={16} className="text-brand-orange" />
-              <div className="w-12 h-12 rounded-lg bg-[#6E026F]/10 flex items-center justify-center text-[#6E026F]"><BarChart3 size={24} /></div>
-            </div>
-          }
-        ].map((service, i) => (
-          <section key={i} className={cn(
-            "grid grid-cols-1 lg:grid-cols-2 gap-20 items-center",
-            i % 2 === 1 && "lg:flex-row-reverse"
-          )}>
-            <div className={cn("space-y-8", i % 2 === 1 && "lg:order-2")}>
-              <div className="space-y-2">
-                <span className="text-xs font-mono text-brand-orange uppercase tracking-widest">{service.subtitle}</span>
-                <h2 className="text-4xl font-display font-bold uppercase text-[#6E026F]">{service.title}</h2>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
+            className="grid gap-4"
+          >
+            <ImagePanel src="/images/team-services-systems.png" label="Global strategy" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-[26px] bg-black p-5 text-white">
+                <LineChart size={22} className="text-brand-yellow" />
+                <div className="mt-10 text-3xl font-semibold">04</div>
+                <p className="mt-2 text-sm leading-6 text-white/58">connected growth systems</p>
               </div>
-              <p className="text-[#6E026F]/70 leading-relaxed text-lg">{service.desc}</p>
-              <ul className="space-y-4">
-                {service.features.map((f, j) => (
-                  <li key={j} className="flex items-center gap-3 text-sm font-mono text-[#6E026F]/60 uppercase tracking-widest">
-                    <ArrowRight size={14} className="text-brand-orange" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-[26px] border border-black/10 bg-white p-5">
+                <p className="text-sm font-semibold uppercase text-black/42">Cadence</p>
+                <div className="mt-10 text-3xl font-semibold">Weekly</div>
+                <p className="mt-2 text-sm leading-6 text-black/55">decisions, tests, and readouts</p>
+              </div>
             </div>
-            <div className={cn("glass aspect-video rounded-2xl p-12 flex items-center justify-center", i % 2 === 1 && "lg:order-1")}>
-              {service.viz}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="px-5 py-20 sm:px-8 md:py-28 lg:px-10">
+        <div className="mx-auto max-w-[1480px]">
+          <motion.div {...fadeIn} className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+            <div>
+              <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">Capability stack</p>
+              <h2 className="text-[clamp(2.45rem,4.4vw,4.8rem)] font-semibold leading-[0.96]">
+                Four ways we make growth easier to operate.
+              </h2>
             </div>
-          </section>
-        ))}
-      </div>
+            <p className="text-lg leading-8 text-black/58">
+              Start with the constraint that matters most, then connect the next layer as the system matures.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <motion.article
+                  key={service.title}
+                  {...fadeIn}
+                  transition={{ duration: 0.55, delay: index * 0.05, ease: 'easeOut' }}
+                  className="overflow-hidden rounded-[32px] border border-black/10 bg-white p-4 shadow-[0_18px_70px_rgba(35,31,24,0.06)]"
+                >
+                  <ImagePanel src={service.image} label={service.label} />
+                  <div className="p-4 pt-7">
+                    <div className="mb-8 flex items-center justify-between">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f3f0e8] text-brand-purple">
+                        <Icon size={22} />
+                      </span>
+                      <span className="text-sm font-semibold text-black/35">0{index + 1}</span>
+                    </div>
+                    <h3 className="text-3xl font-semibold">{service.title}</h3>
+                    <p className="mt-4 max-w-xl leading-7 text-black/58">{service.description}</p>
+                    <ul className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                      {service.points.map((point) => (
+                        <li key={point} className="flex items-center gap-2 text-sm font-semibold text-black/55">
+                          <Check size={15} className="text-brand-purple" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-[0.42fr_0.58fr]">
+                      <div className="rounded-[22px] bg-[#f7f4ee] p-4">
+                        <div className="text-3xl font-semibold">{service.metric}</div>
+                        <p className="mt-2 text-sm text-black/50">{service.metricLabel}</p>
+                      </div>
+                      <MiniModel active={index + 3} />
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#111111] px-5 py-20 text-white sm:px-8 md:py-24 lg:px-10">
+        <div className="mx-auto max-w-[1480px]">
+          <motion.div {...fadeIn} className="mb-10 max-w-4xl">
+            <p className="mb-5 text-sm font-semibold uppercase text-brand-yellow">Operating model</p>
+            <h2 className="text-[clamp(2.45rem,4.2vw,4.7rem)] font-semibold leading-[0.96]">
+              Clean services, connected by one rhythm.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            {process.map((step, index) => (
+              <motion.div
+                key={step.title}
+                {...fadeIn}
+                transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }}
+                className="rounded-[26px] border border-white/10 bg-white/[0.05] p-6"
+              >
+                <span className="text-sm font-semibold text-brand-yellow">0{index + 1}</span>
+                <h3 className="mt-10 text-2xl font-semibold">{step.title}</h3>
+                <p className="mt-4 leading-7 text-white/56">{step.text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-20 sm:px-8 md:py-24 lg:px-10">
+        <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 rounded-[32px] bg-white p-7 shadow-[0_20px_70px_rgba(35,31,24,0.07)] md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase text-brand-purple">Service audit</p>
+            <h2 className="max-w-4xl text-[clamp(2.3rem,3.8vw,4.25rem)] font-semibold leading-[0.98]">
+              Find the highest-leverage system to build next.
+            </h2>
+          </div>
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-purple"
+          >
+            Request audit
+            <ArrowUpRight size={18} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };

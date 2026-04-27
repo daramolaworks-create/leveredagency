@@ -1,142 +1,165 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Beaker, CheckCircle2, TrendingUp, FlaskConical, ArrowRight } from 'lucide-react';
+import { ArrowRight, Check, FlaskConical, LineChart as LineChartIcon, TrendingUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { cn } from '../lib/utils';
 
 const experimentData = [
-  { day: 'Day 1', variantA: 10, variantB: 12 },
-  { day: 'Day 3', variantA: 15, variantB: 22 },
-  { day: 'Day 5', variantA: 18, variantB: 35 },
-  { day: 'Day 7', variantA: 22, variantB: 48 },
-  { day: 'Day 10', variantA: 25, variantB: 62 },
-  { day: 'Day 14', variantA: 30, variantB: 85 },
+  { day: 'Day 1', control: 10, challenger: 12 },
+  { day: 'Day 3', control: 15, challenger: 22 },
+  { day: 'Day 5', control: 18, challenger: 35 },
+  { day: 'Day 7', control: 22, challenger: 48 },
+  { day: 'Day 10', control: 25, challenger: 62 },
+  { day: 'Day 14', control: 30, challenger: 85 },
 ];
+
+const findings = [
+  { id: '741', title: 'SMS vs Email for Cart Recovery', result: 'SMS +42%', status: 'Winner' },
+  { id: '739', title: 'Dynamic Pricing Thresholds', result: 'Inconclusive', status: 'Stopped' },
+  { id: '732', title: 'AI Copywriting vs Human', result: 'AI +12% CTR', status: 'Winner' },
+];
+
+const metrics = [
+  ['Confidence', '98.4%'],
+  ['Lift', '+28.4%'],
+  ['Sample', '14,202'],
+];
+
+const fadeIn = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.55, ease: 'easeOut' },
+};
 
 export const Experiments = () => {
   return (
-    <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-20">
-      <header className="space-y-6 max-w-3xl">
-        <div className="flex items-center gap-2 text-brand-orange font-mono text-xs uppercase tracking-widest">
-          <FlaskConical size={16} />
-          Live Experimentation Lab
-        </div>
-        <h1 className="text-6xl font-display font-black uppercase tracking-tighter text-[#6E026F]">
-          The Lab.
-        </h1>
-        <p className="text-[#6E026F]/70 text-xl leading-relaxed">
-          We run hundreds of experiments monthly. This is a live look at our methodology, hypothesis testing, and statistical significance models.
-        </p>
-      </header>
+    <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
+      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
+        <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1fr_0.72fr]">
+          <motion.header
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+          >
+            <p className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase text-brand-purple">
+              <FlaskConical size={16} />
+              Experiments
+            </p>
+            <h1 className="max-w-5xl text-[clamp(2.85rem,5.2vw,5.6rem)] font-semibold leading-[0.94]">
+              The lab behind cleaner growth decisions.
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+              We run structured experiments across acquisition, conversion, and retention so growth decisions are based on signal, not opinion.
+            </p>
+          </motion.header>
 
-      {/* Featured Experiment */}
-      <section className="glass rounded-2xl overflow-hidden border border-black/5">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="p-10 space-y-8 border-b lg:border-b-0 lg:border-r border-black/5">
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono text-brand-orange uppercase tracking-widest">Active Experiment #842</span>
-              <h2 className="text-3xl font-display font-bold uppercase text-[#6E026F]">Checkout Flow: Multi-step vs. Single-page</h2>
-            </div>
-
-            <div className="space-y-4">
-              <div className="p-4 bg-black/5 rounded-lg border border-black/5">
-                <h4 className="text-xs font-mono uppercase text-[#6E026F]/60 mb-2">Hypothesis</h4>
-                <p className="text-sm text-[#6E026F]">Reducing cognitive load by splitting checkout into 3 distinct steps will increase completion rate by 15% for mobile users.</p>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 border border-black/5 rounded-lg">
-                  <h4 className="text-xs font-mono uppercase text-[#6E026F]/60 mb-2 flex items-center gap-2">
-                    <CheckCircle2 size={12} className="text-green-600" /> Variant A (Control)
-                  </h4>
-                  <p className="text-sm font-mono text-[#6E026F]">Single Page Checkout</p>
-                </div>
-                <div className="p-4 border border-brand-orange/30 bg-brand-orange/5 rounded-lg">
-                  <h4 className="text-xs font-mono uppercase text-brand-orange mb-2 flex items-center gap-2">
-                    <TrendingUp size={12} /> Variant B (Challenger)
-                  </h4>
-                  <p className="text-sm font-mono text-brand-orange">3-Step Progressive Flow</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-xs font-mono uppercase text-[#6E026F]/60">Live Metrics</h4>
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <div className="text-2xl font-display font-bold text-[#6E026F]">98.4%</div>
-                  <div className="text-[10px] font-mono text-[#6E026F]/40 uppercase">Confidence</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-display font-bold text-green-600">+28.4%</div>
-                  <div className="text-[10px] font-mono text-[#6E026F]/40 uppercase">Lift</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-display font-bold text-[#6E026F]">14,202</div>
-                  <div className="text-[10px] font-mono text-[#6E026F]/40 uppercase">Sample Size</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-10 bg-white/20 flex flex-col justify-center">
-            <h3 className="text-xs font-mono uppercase text-[#6E026F]/60 mb-8">Conversion Rate Over Time</h3>
-            <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={experimentData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#00000005" vertical={false} />
-                  <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#6E026F', fontSize: 10, opacity: 0.6 }} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fill: '#6E026F', fontSize: 10, opacity: 0.6 }} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  />
-                  <Legend verticalAlign="top" height={36} iconType="circle" />
-                  <Line type="monotone" dataKey="variantA" name="Control" stroke="#6E026F" strokeOpacity={0.3} strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="variantB" name="Challenger" stroke="#FA891A" strokeWidth={3} dot={{ r: 4, fill: '#FA891A' }} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
+            className="rounded-[36px] bg-black p-6 text-white"
+          >
+            <LineChartIcon size={24} className="text-brand-yellow" />
+            <div className="mt-20 text-5xl font-semibold">150+</div>
+            <p className="mt-3 max-w-sm text-lg leading-8 text-white/58">active experiments across growth systems.</p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Experiment Archive */}
-      <section className="space-y-10">
-        <h3 className="text-2xl font-display font-bold uppercase text-[#6E026F]">Recent Findings</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { id: '741', title: 'SMS vs Email for Cart Recovery', result: 'SMS +42%', status: 'Winner' },
-            { id: '739', title: 'Dynamic Pricing Thresholds', result: 'Inconclusive', status: 'Stopped' },
-            { id: '732', title: 'AI Copywriting vs Human', result: 'AI +12% CTR', status: 'Winner' },
-          ].map((exp) => (
-            <div key={exp.id} className="p-6 glass border-t-2 border-t-brand-orange space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-[10px] font-mono text-[#6E026F]/40">#EXP-{exp.id}</span>
-                <span className={cn(
-                  "text-[10px] font-mono px-2 py-0.5 rounded-full uppercase",
-                  exp.status === 'Winner' ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-                )}>
-                  {exp.status}
-                </span>
-              </div>
-              <h4 className="font-display font-bold uppercase text-sm leading-tight text-[#6E026F]">{exp.title}</h4>
-              <div className="text-xl font-display font-bold text-[#6E026F]">{exp.result}</div>
-              <button className="text-[10px] font-mono uppercase text-brand-orange hover:underline">View Full Report</button>
-            </div>
-          ))}
-        </div>
-      </section>
+      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+        <div className="mx-auto max-w-[1480px]">
+          <motion.div {...fadeIn} className="overflow-hidden rounded-[34px] border border-black/10 bg-white p-4 shadow-[0_18px_70px_rgba(35,31,24,0.06)]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+              <div className="rounded-[28px] bg-[#f7f4ee] p-6 md:p-8">
+                <p className="text-sm font-semibold uppercase text-brand-purple">Active experiment #842</p>
+                <h2 className="mt-4 text-3xl font-semibold">Checkout flow: multi-step vs. single-page</h2>
+                <p className="mt-5 leading-7 text-black/58">
+                  Reducing cognitive load by splitting checkout into three steps is expected to increase completion for mobile users.
+                </p>
 
-      {/* Methodology Link */}
-      <section className="py-20 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="space-y-2">
-          <h3 className="text-2xl font-display font-bold uppercase text-[#6E026F]">How we run experiments.</h3>
-          <p className="text-[#6E026F]/60 max-w-md">Learn about our Bayesian framework and statistical significance models.</p>
+                <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-white p-4">
+                    <p className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase text-black/38">
+                      <Check size={13} />
+                      Control
+                    </p>
+                    <p className="font-semibold">Single page checkout</p>
+                  </div>
+                  <div className="rounded-2xl bg-black p-4 text-white">
+                    <p className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase text-brand-yellow">
+                      <TrendingUp size={13} />
+                      Challenger
+                    </p>
+                    <p className="font-semibold">3-step progressive flow</p>
+                  </div>
+                </div>
+
+                <div className="mt-7 grid grid-cols-3 gap-3">
+                  {metrics.map(([label, value]) => (
+                    <div key={label} className="rounded-2xl bg-white p-4">
+                      <div className="text-2xl font-semibold">{value}</div>
+                      <p className="mt-1 text-xs font-semibold uppercase text-black/38">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[28px] bg-black p-5 text-white">
+                <div className="mb-5 flex items-center justify-between">
+                  <p className="text-sm font-semibold text-white/58">Conversion rate over time</p>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold">Live</span>
+                </div>
+                <div className="h-[320px] w-full min-w-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={experimentData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
+                      <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#ffffff', fontSize: 11, opacity: 0.55 }} />
+                      <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff', fontSize: 11, opacity: 0.45 }} width={28} />
+                      <Tooltip
+                        contentStyle={{ backgroundColor: '#111111', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '14px', color: '#ffffff' }}
+                        itemStyle={{ color: '#ffffff' }}
+                      />
+                      <Legend verticalAlign="top" height={36} iconType="circle" />
+                      <Line type="monotone" dataKey="control" name="Control" stroke="#ffffff" strokeOpacity={0.35} strokeWidth={2} dot={false} isAnimationActive={false} />
+                      <Line type="monotone" dataKey="challenger" name="Challenger" stroke="#F3C770" strokeWidth={3} dot={{ r: 4, fill: '#F3C770' }} isAnimationActive={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <section className="mt-20">
+            <motion.div {...fadeIn} className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="mb-4 text-sm font-semibold uppercase text-brand-purple">Recent findings</p>
+                <h2 className="text-[clamp(2.3rem,3.8vw,4.25rem)] font-semibold leading-[0.98]">Signals worth acting on.</h2>
+              </div>
+              <Link to="/methodology" className="inline-flex items-center gap-2 text-sm font-semibold text-black transition-colors hover:text-brand-purple">
+                Our methodology
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {findings.map((exp, index) => (
+                <motion.article key={exp.id} {...fadeIn} transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }} className="rounded-[28px] border border-black/10 bg-white p-6">
+                  <div className="mb-10 flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase text-black/35">#EXP-{exp.id}</span>
+                    <span className={cn('rounded-full px-3 py-1 text-xs font-semibold uppercase', exp.status === 'Winner' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')}>
+                      {exp.status}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold leading-tight">{exp.title}</h3>
+                  <p className="mt-5 text-3xl font-semibold">{exp.result}</p>
+                </motion.article>
+              ))}
+            </div>
+          </section>
         </div>
-        <Link to="/methodology" className="px-8 py-4 border border-[#6E026F]/20 text-[#6E026F] font-display font-bold uppercase tracking-widest hover:bg-[#6E026F] hover:text-white transition-all rounded-sm flex items-center gap-2">
-          Our Methodology <ArrowRight size={18} />
-        </Link>
       </section>
     </div>
   );

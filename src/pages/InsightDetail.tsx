@@ -1,7 +1,5 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { ArrowLeft, Clock, Share2, Bookmark, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Bookmark, Clock, Share2 } from 'lucide-react';
 
 const insights = {
   'server-side-attribution': {
@@ -9,113 +7,106 @@ const insights = {
     date: 'March 12, 2026',
     readTime: '12 min read',
     category: 'Infrastructure',
-    content: `
-      <p>The marketing landscape is undergoing a fundamental shift. With the deprecation of third-party cookies and the rise of privacy-first browsing, traditional client-side tracking is no longer sufficient. To maintain a competitive edge, growth teams must transition to server-side attribution.</p>
-      
-      <h2>The Problem with Client-Side Tracking</h2>
-      <p>Client-side tracking relies on the browser to send data directly to ad platforms. This is increasingly blocked by ad-blockers, ITP (Intelligent Tracking Prevention), and user privacy settings. The result? A massive "blind spot" in your data, leading to inaccurate ROAS reporting and inefficient bidding.</p>
-      
-      <h2>The Server-Side Solution</h2>
-      <p>Server-side attribution moves the tracking logic from the browser to your own server. Instead of the browser sending data to Meta or Google, it sends data to your server, which then securely forwards it to the ad platforms. This ensures 100% data integrity and allows you to enrich events with first-party data before they are sent.</p>
-      
-      <blockquote>
-        "In a privacy-first world, the only way to win is to own your data infrastructure. Server-side is not an option; it's a requirement."
-      </blockquote>
-      
-      <h2>Implementation Roadmap</h2>
-      <p>1. <strong>Deploy a Server-Side Container:</strong> Use Google Tag Manager (GTM) Server-Side or a custom proxy to intercept browser events.</p>
-      <p>2. <strong>First-Party Data Enrichment:</strong> Append user IDs, LTV scores, and purchase history to your events before sending them to ad platforms.</p>
-      <p>3. <strong>Conversions API Integration:</strong> Connect directly to Meta, Google, and TikTok APIs to bypass browser-based tracking entirely.</p>
-      
-      <h2>The Result</h2>
-      <p>Companies that transition to server-side attribution typically see a 15-25% increase in attributed conversions and a significant reduction in CAC due to better platform optimization.</p>
-    `
+    image: '/images/team-insights-research.png',
+    sections: [
+      ['The problem with client-side tracking', 'Client-side tracking relies on the browser to send data directly to ad platforms. This is increasingly blocked by ad blockers, privacy settings, and browser-level prevention. The result is a blind spot in ROAS reporting and bidding feedback.'],
+      ['The server-side solution', 'Server-side attribution moves the tracking logic from the browser to controlled infrastructure. Events can be validated, enriched with first-party signals, and forwarded to platforms with more consistency.'],
+      ['Implementation roadmap', 'Deploy a server-side container, enrich events with customer value signals, connect platform conversion APIs, and maintain a clear event taxonomy owned by the business.'],
+      ['The result', 'Teams that transition to server-side measurement typically see stronger attributed conversion volume and better optimization quality because platforms receive cleaner feedback.'],
+    ],
   },
   'bayesian-bidding': {
     title: 'Statistical Significance in Low-Volume Markets: A Bayesian Approach',
     date: 'Feb 28, 2026',
     readTime: '15 min read',
     category: 'Data Science',
-    content: `
-      <p>Traditional A/B testing (Frequentist) requires large sample sizes to reach statistical significance. In high-ticket or low-volume markets, this can take months. Bayesian statistics offers a faster, more flexible alternative.</p>
-      
-      <h2>Why Frequentist Testing Fails</h2>
-      <p>Frequentist methods rely on p-values. If you don't have enough data, your p-value remains high, and you can't make a decision. This leads to "test paralysis" where winners are never scaled and losers continue to drain budget.</p>
-      
-      <h2>The Bayesian Advantage</h2>
-      <p>Bayesian testing calculates the "probability of being better." Instead of a binary yes/no, it gives you a continuous probability. This allows you to make informed decisions much earlier in the test cycle.</p>
-      
-      <h2>Applying Bayesian Logic to Bidding</h2>
-      <p>We use Bayesian models to adjust bids in real-time. If a creative has an 85% probability of being the winner, we start shifting budget towards it immediately, rather than waiting for 95% confidence.</p>
-    `
-  }
+    image: '/images/team-methodology-workshop.png',
+    sections: [
+      ['Why frequentist testing fails', 'Traditional tests often require sample sizes that high-ticket or low-volume markets cannot reach quickly. That creates test paralysis and delays decisions.'],
+      ['The Bayesian advantage', 'Bayesian methods estimate the probability that a variant is better, giving teams a more practical view of confidence as evidence accumulates.'],
+      ['Applying Bayesian logic to bidding', 'We use probability-weighted reads to shift budget earlier, scale likely winners carefully, and reduce wasted spend while evidence continues to build.'],
+    ],
+  },
 };
 
 export const InsightDetail = () => {
   const { id } = useParams();
   const post = insights[id as keyof typeof insights];
 
-  if (!post) return <div className="pt-40 text-center">Insight not found.</div>;
+  if (!post) {
+    return (
+      <div className="bg-[#f7f4ee] px-5 py-40 text-center">
+        <p className="text-lg font-semibold">Insight not found.</p>
+        <Link to="/insights" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-purple">
+          <ArrowLeft size={16} />
+          Back to insights
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto space-y-12">
-      <Link to="/insights" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-[#6E026F]/40 hover:text-brand-orange transition-colors">
-        <ArrowLeft size={14} /> Back to Insights
-      </Link>
-
-      <header className="space-y-8">
-        <div className="space-y-4">
-          <span className="px-2 py-1 bg-brand-orange/10 text-brand-orange text-[10px] font-mono uppercase tracking-widest rounded-sm">
-            {post.category}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter text-[#6E026F] leading-[0.9]">
-            {post.title}
-          </h1>
-        </div>
-        
-        <div className="flex items-center justify-between py-6 border-y border-black/5">
-          <div className="flex items-center gap-6 text-[10px] font-mono text-[#6E026F]/40 uppercase tracking-widest">
-            <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
-            <span>{post.date}</span>
-          </div>
-          <div className="flex items-center gap-4 text-[#6E026F]/40">
-            <button className="hover:text-brand-orange transition-colors"><Share2 size={18} /></button>
-            <button className="hover:text-brand-orange transition-colors"><Bookmark size={18} /></button>
-          </div>
-        </div>
-      </header>
-
-      <article 
-        className="prose prose-lg max-w-none text-[#6E026F]/70 leading-relaxed space-y-8
-          prose-headings:font-display prose-headings:font-bold prose-headings:uppercase prose-headings:text-[#6E026F]
-          prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
-          prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-[#6E026F]
-          prose-strong:text-[#6E026F] prose-strong:font-bold"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-
-      <footer className="pt-20 border-t border-black/5 space-y-12">
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <h4 className="text-sm font-display font-bold uppercase text-[#6E026F]">Written by</h4>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#6E026F]/10" />
-              <div className="text-xs font-mono uppercase text-[#6E026F]/60">Levered Engineering Team</div>
-            </div>
-          </div>
-          <button className="px-6 py-3 border border-[#6E026F]/20 text-[#6E026F] font-mono text-[10px] uppercase tracking-widest hover:bg-[#6E026F] hover:text-white transition-all rounded-sm">
-            Subscribe to Newsletter
-          </button>
-        </div>
-
-        <div className="p-10 glass rounded-2xl border border-black/5 space-y-6 text-center">
-          <h3 className="text-2xl font-display font-bold uppercase text-[#6E026F]">Ready to engineer your growth?</h3>
-          <p className="text-[#6E026F]/60 max-w-md mx-auto">We build custom growth systems for companies spending $100k+/mo on paid media.</p>
-          <Link to="/contact" className="inline-flex px-12 py-4 bg-[#6E026F] text-white font-display font-bold uppercase tracking-widest hover:bg-brand-orange transition-all rounded-sm">
-            Request Audit
+    <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
+      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
+        <div className="relative mx-auto max-w-[1180px]">
+          <Link to="/insights" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-black/52 transition-colors hover:text-black">
+            <ArrowLeft size={16} />
+            Back to insights
           </Link>
+          <header className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12">
+            <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">{post.category}</p>
+            <h1 className="max-w-5xl text-[clamp(2.7rem,4.8vw,5.2rem)] font-semibold leading-[0.96]">{post.title}</h1>
+            <div className="mt-8 flex flex-col gap-4 border-t border-black/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-black/45">
+                <span>{post.date}</span>
+                <span className="inline-flex items-center gap-1"><Clock size={15} /> {post.readTime}</span>
+              </div>
+              <div className="flex gap-2">
+                <button className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black/52 transition-colors hover:text-black">
+                  <Share2 size={17} />
+                </button>
+                <button className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black/52 transition-colors hover:text-black">
+                  <Bookmark size={17} />
+                </button>
+              </div>
+            </div>
+          </header>
         </div>
-      </footer>
+      </section>
+
+      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+        <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-8 lg:grid-cols-[1fr_0.35fr]">
+          <article className="rounded-[34px] border border-black/10 bg-white p-7 md:p-10">
+            <div className="relative mb-10 min-h-[360px] overflow-hidden rounded-[28px] bg-black">
+              <img src={post.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/8 to-transparent" />
+            </div>
+            <div className="space-y-12">
+              {post.sections.map(([heading, body]) => (
+                <section key={heading}>
+                  <h2 className="text-3xl font-semibold">{heading}</h2>
+                  <p className="mt-5 text-lg leading-8 text-black/62">{body}</p>
+                </section>
+              ))}
+            </div>
+          </article>
+
+          <aside className="space-y-5">
+            <div className="rounded-[30px] bg-black p-6 text-white">
+              <h3 className="text-2xl font-semibold">Build this into your system.</h3>
+              <p className="mt-4 leading-7 text-white/58">Turn the idea into instrumentation, dashboards, and operating cadence.</p>
+              <Link
+                to="/contact"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-brand-yellow"
+              >
+                Request audit
+                <ArrowRight size={17} />
+              </Link>
+            </div>
+          </aside>
+        </div>
+      </section>
     </div>
   );
 };

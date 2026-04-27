@@ -13,35 +13,35 @@ import { InsightDetail } from './pages/InsightDetail';
 import { Contact } from './pages/Contact';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
+ const { pathname } = useLocation();
+ useEffect(() => {
+ window.scrollTo(0, 0);
+ }, [pathname]);
+ return null;
 }
 
 export default function App() {
-  return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/methodology" element={<Methodology />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/experiments" element={<Experiments />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/insights/:id" element={<InsightDetail />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
+ return (
+ <Router>
+ <ScrollToTop />
+ <div className="min-h-screen flex flex-col">
+ <Navbar />
+ <main className="flex-grow">
+ <Routes>
+ <Route path="/" element={<Home />} />
+ <Route path="/about" element={<About />} />
+ <Route path="/methodology" element={<Methodology />} />
+ <Route path="/services" element={<Services />} />
+ <Route path="/experiments" element={<Experiments />} />
+ <Route path="/case-studies" element={<CaseStudies />} />
+ <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+ <Route path="/insights" element={<Insights />} />
+ <Route path="/insights/:id" element={<InsightDetail />} />
+ <Route path="/contact" element={<Contact />} />
+ </Routes>
+ </main>
+ <Footer />
+ </div>
+ </Router>
+ );
 }
