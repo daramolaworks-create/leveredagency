@@ -27,6 +27,58 @@ const insights = {
       ['Applying Bayesian logic to bidding', 'We use probability-weighted reads to shift budget earlier, scale likely winners carefully, and reduce wasted spend while evidence continues to build.'],
     ],
   },
+  'predictive-ltv': {
+    title: 'Predictive LTV: Moving Beyond Historical Cohort Analysis',
+    date: 'Feb 15, 2026',
+    readTime: '10 min read',
+    category: 'Retention',
+    image: '/images/team-about-global.png',
+    sections: [
+      ['Why historical cohorts lag', 'Traditional cohort reads explain what already happened. They are useful for reporting, but they often arrive too late to influence acquisition, onboarding, and lifecycle decisions.'],
+      ['What predictive LTV changes', 'Predictive LTV uses early behavioral signals to estimate future customer value. That lets teams adjust bids, offers, and lifecycle treatment before the customer has fully matured.'],
+      ['Signals that matter', 'Early product engagement, category affinity, first-order margin, support behavior, and repeat-session quality can all improve the model when they are captured cleanly.'],
+      ['The operating implication', 'The value of predictive LTV is not the score itself. It is the activation loop that routes that score back into media, CRM, merchandising, and executive reporting.'],
+    ],
+  },
+  'growth-loop-framework': {
+    title: 'The Growth Loop Framework: Why Campaigns are Obsolete',
+    date: 'Jan 30, 2026',
+    readTime: '8 min read',
+    category: 'Strategy',
+    image: '/images/team-services-systems.png',
+    sections: [
+      ['Campaigns reset too often', 'Campaign thinking creates bursts of activity that end before learning compounds. Teams launch, report, archive, and start over instead of building reusable growth infrastructure.'],
+      ['Loops compound learning', 'A growth loop turns every customer interaction into better targeting, stronger proof, cleaner lifecycle timing, or sharper product insight. The system gets more useful with each cycle.'],
+      ['The four loop layers', 'Strong loops connect acquisition signal, conversion behavior, lifecycle response, and measurement feedback. When one layer is missing, the whole system becomes harder to steer.'],
+      ['Designing the first loop', 'Start with the highest-friction customer moment, define the signal it creates, and decide how that signal will change the next action. Keep the first loop simple enough to operate weekly.'],
+    ],
+  },
+  'incrementality-testing': {
+    title: 'Incrementality Testing: The Only Way to Measure True Marketing Impact',
+    date: 'Jan 12, 2026',
+    readTime: '18 min read',
+    category: 'Measurement',
+    image: '/images/team-case-studies.png',
+    sections: [
+      ['Attribution is not causality', 'Platform attribution tells you which touchpoints claimed credit. It does not prove whether the revenue would have happened without the spend.'],
+      ['How incrementality helps', 'Incrementality testing compares exposed and held-out groups so teams can estimate true lift. It is the cleanest way to separate demand capture from demand creation.'],
+      ['Choosing the right design', 'Geo tests, audience holdouts, conversion lift studies, and matched-market designs each fit different spend levels and operational constraints. The right test is the one the team can run cleanly.'],
+      ['Making it operational', 'Incrementality should not be a one-time research project. It should become a recurring calibration layer that informs budget, channel mix, and confidence in platform reporting.'],
+    ],
+  },
+  'ai-performance-creative': {
+    title: 'AI in Performance Creative: Automating the Hypothesis Loop',
+    date: 'Dec 20, 2025',
+    readTime: '11 min read',
+    category: 'Creative',
+    image: '/images/team-experiments-lab.png',
+    sections: [
+      ['AI is not the creative strategy', 'AI can produce more variations, but it does not know which customer anxiety, proof point, or offer mechanic matters unless the team feeds it good strategy.'],
+      ['Prompt from evidence', 'The strongest AI creative systems use real objections, review language, sales calls, search terms, and winning ad learnings as inputs. The prompt should be a structured hypothesis, not a blank request.'],
+      ['Close the loop', 'Performance data should update the next generation of prompts. Winning angles, audience segments, landing-page outcomes, and fatigue signals all become fuel for the next batch.'],
+      ['Human judgment still matters', 'AI expands the surface area of ideas. Humans still decide which ideas are strategically coherent, brand-safe, and worth connecting to the funnel.'],
+    ],
+  },
 };
 
 export const InsightDetail = () => {

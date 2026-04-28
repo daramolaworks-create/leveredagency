@@ -14,9 +14,9 @@ const experimentData = [
 ];
 
 const findings = [
-  { id: '741', title: 'SMS vs Email for Cart Recovery', result: 'SMS +42%', status: 'Winner' },
-  { id: '739', title: 'Dynamic Pricing Thresholds', result: 'Inconclusive', status: 'Stopped' },
-  { id: '732', title: 'AI Copywriting vs Human', result: 'AI +12% CTR', status: 'Winner' },
+  { id: 'cart-recovery-sms', number: '741', title: 'SMS vs Email for Cart Recovery', result: 'SMS +42%', status: 'Winner' },
+  { id: 'dynamic-pricing-thresholds', number: '739', title: 'Dynamic Pricing Thresholds', result: 'Inconclusive', status: 'Stopped' },
+  { id: 'ai-copywriting-human', number: '732', title: 'AI Copywriting vs Human', result: 'AI +12% CTR', status: 'Winner' },
 ];
 
 const metrics = [
@@ -105,6 +105,10 @@ export const Experiments = () => {
                     </div>
                   ))}
                 </div>
+                <Link to="/experiments/checkout-flow" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-black transition-colors hover:text-brand-purple">
+                  View active report
+                  <ArrowRight size={15} />
+                </Link>
               </div>
 
               <div className="rounded-[28px] bg-black p-5 text-white">
@@ -145,16 +149,20 @@ export const Experiments = () => {
             </motion.div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {findings.map((exp, index) => (
+            {findings.map((exp, index) => (
                 <motion.article key={exp.id} {...fadeIn} transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }} className="rounded-[28px] border border-black/10 bg-white p-6">
                   <div className="mb-10 flex items-center justify-between">
-                    <span className="text-xs font-semibold uppercase text-black/35">#EXP-{exp.id}</span>
+                    <span className="text-xs font-semibold uppercase text-black/35">#EXP-{exp.number}</span>
                     <span className={cn('rounded-full px-3 py-1 text-xs font-semibold uppercase', exp.status === 'Winner' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')}>
                       {exp.status}
                     </span>
                   </div>
                   <h3 className="text-xl font-semibold leading-tight">{exp.title}</h3>
                   <p className="mt-5 text-3xl font-semibold">{exp.result}</p>
+                  <Link to={`/experiments/${exp.id}`} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-black/62 transition-colors hover:text-brand-purple">
+                    View report
+                    <ArrowRight size={15} />
+                  </Link>
                 </motion.article>
               ))}
             </div>

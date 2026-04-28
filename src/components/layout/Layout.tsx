@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Instagram, Linkedin, Mail, Menu, Twitter, X } from 'lucide-react';
+import { ArrowRight, Instagram, Linkedin, Mail, Menu, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const navItems = [
@@ -12,9 +12,8 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { name: 'LinkedIn', href: '#', icon: Linkedin },
-  { name: 'Twitter', href: '#', icon: Twitter },
-  { name: 'Instagram', href: '#', icon: Instagram },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/leveredagency/?viewAsMember=true', icon: Linkedin },
+  { name: 'Instagram', href: 'https://www.instagram.com/levered.us/?hl=en', icon: Instagram },
 ];
 
 export const Navbar = () => {
@@ -161,8 +160,8 @@ export const Footer = () => {
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs font-semibold text-white/34 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Levered Systems Inc. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-3">
-            <a href="#" className="transition-colors hover:text-white">Privacy</a>
-            <a href="#" className="transition-colors hover:text-white">Terms</a>
+            <Link to="/privacy" className="transition-colors hover:text-white">Privacy</Link>
+            <Link to="/terms" className="transition-colors hover:text-white">Terms</Link>
             <div className="mx-1 h-4 w-px bg-white/10" />
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -171,6 +170,8 @@ export const Footer = () => {
                   key={social.name}
                   href={social.href}
                   aria-label={social.name}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/48 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
                 >
                   <Icon size={16} />

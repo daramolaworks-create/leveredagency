@@ -45,6 +45,48 @@ const caseStudies = {
       'Implemented personalized product recommendations.',
     ],
   },
+  'saas-enterprise': {
+    client: 'SaaS Enterprise',
+    title: 'Lifting demo requests on high-intent product pages.',
+    result: '18% lift in demo requests through behavioral-driven CRO.',
+    challenge:
+      'The company had strong traffic quality, but product pages were overloaded with generic messaging. High-intent visitors were not seeing role-specific proof or a clear path to the right sales motion.',
+    solution:
+      'We rebuilt the conversion architecture around behavioral segments, added proof modules for different buyer roles, and launched a rolling experimentation program across page structure, CTA sequencing, and qualification logic.',
+    image: '/images/team-services-systems.png',
+    metrics: [
+      { label: 'Demo lift', value: '+18%' },
+      { label: 'Qualified pipeline', value: '+27%' },
+      { label: 'Test cycles', value: '9' },
+    ],
+    steps: [
+      'Mapped high-intent paths from product analytics and CRM data.',
+      'Created role-specific proof modules for finance, product, and operations buyers.',
+      'Tested CTA order, demo form friction, and proof placement.',
+      'Built a weekly readout loop for sales and growth teams.',
+    ],
+  },
+  'ecommerce-aggregator': {
+    client: 'E-commerce Aggregator',
+    title: 'Unifying measurement across a multi-brand portfolio.',
+    result: 'Unified server-side attribution system deployed in 6 weeks.',
+    challenge:
+      'The portfolio had fragmented tracking, inconsistent event names, and no reliable cross-brand view of spend, revenue, or cohort quality. Decisions were slow because every brand reported differently.',
+    solution:
+      'We created a shared event taxonomy, deployed server-side tracking, and built an executive reporting layer that normalized acquisition, retention, and contribution margin across the portfolio.',
+    image: '/images/team-methodology-workshop.png',
+    metrics: [
+      { label: 'Brands unified', value: '12' },
+      { label: 'Deployment', value: '6 wk' },
+      { label: 'Signal coverage', value: '96%' },
+    ],
+    steps: [
+      'Audited event quality across all brand storefronts.',
+      'Standardized naming, source mapping, and revenue definitions.',
+      'Deployed server-side event routing and platform conversion APIs.',
+      'Built a portfolio dashboard for budget and cohort decisions.',
+    ],
+  },
 };
 
 const fadeIn = {
