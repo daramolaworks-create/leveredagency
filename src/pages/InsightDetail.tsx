@@ -87,7 +87,7 @@ export const InsightDetail = () => {
 
   if (!post) {
     return (
-      <div className="bg-[#f7f4ee] px-5 py-40 text-center">
+      <div className="bg-[#f7f4ee] px-4 py-32 text-center">
         <p className="text-lg font-semibold">Insight not found.</p>
         <Link to="/insights" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-purple">
           <ArrowLeft size={16} />
@@ -99,16 +99,16 @@ export const InsightDetail = () => {
 
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto max-w-[1180px]">
           <Link to="/insights" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-black/52 transition-colors hover:text-black">
             <ArrowLeft size={16} />
             Back to insights
           </Link>
-          <header className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12">
+          <header className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12">
             <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">{post.category}</p>
-            <h1 className="max-w-5xl text-[clamp(2.7rem,4.8vw,5.2rem)] font-semibold leading-[0.96]">{post.title}</h1>
+            <h1 className="max-w-5xl text-[clamp(1.9rem,8.4vw,2.35rem)] font-semibold leading-[1] sm:text-[clamp(2.7rem,4.8vw,5.2rem)] sm:leading-[0.96]">{post.title}</h1>
             <div className="mt-8 flex flex-col gap-4 border-t border-black/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-black/45">
                 <span>{post.date}</span>
@@ -127,10 +127,10 @@ export const InsightDetail = () => {
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-8 lg:grid-cols-[1fr_0.35fr]">
           <article className="rounded-[34px] border border-black/10 bg-white p-7 md:p-10">
-            <div className="relative mb-10 min-h-[360px] overflow-hidden rounded-[28px] bg-black">
+            <div className="relative mb-10 min-h-[240px] sm:min-h-[360px] overflow-hidden rounded-[28px] bg-black">
               <img src={post.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/8 to-transparent" />
             </div>
@@ -138,7 +138,7 @@ export const InsightDetail = () => {
               {post.sections.map(([heading, body]) => (
                 <section key={heading}>
                   <h2 className="text-3xl font-semibold">{heading}</h2>
-                  <p className="mt-5 text-lg leading-8 text-black/62">{body}</p>
+                  <p className="mt-5 text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{body}</p>
                 </section>
               ))}
             </div>

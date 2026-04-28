@@ -16,7 +16,7 @@ const nextSteps = [
 export const Contact = () => {
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-20 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto grid max-w-[1420px] grid-cols-1 items-start gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch">
           <motion.div
@@ -26,7 +26,7 @@ export const Contact = () => {
             className="flex h-full flex-col rounded-[34px] border border-black/10 bg-white/68 p-6 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-8"
           >
             <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">Book audit</p>
-            <h1 className="max-w-3xl text-[clamp(2.35rem,4vw,4.2rem)] font-semibold leading-[0.98]">
+            <h1 className="max-w-3xl text-[clamp(2.05rem,9.5vw,2.75rem)] font-semibold leading-[1] sm:text-[clamp(2.35rem,4vw,4.2rem)] sm:leading-[0.98]">
               Start with the system, not the sales call.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-black/62 md:text-lg">

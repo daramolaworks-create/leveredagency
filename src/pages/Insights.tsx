@@ -65,20 +65,20 @@ export const Insights = () => {
 
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1fr_0.72fr]">
           <motion.header
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+            className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
           >
             <p className="mb-6 text-sm font-semibold uppercase text-brand-purple">Insights</p>
-            <h1 className="max-w-5xl text-[clamp(2.85rem,5.2vw,5.6rem)] font-semibold leading-[0.94]">
+            <h1 className="max-w-5xl text-[clamp(2.05rem,9.5vw,2.7rem)] font-semibold leading-[1] sm:text-[clamp(2.85rem,5.2vw,5.6rem)] sm:leading-[0.94]">
               Practical thinking for technical growth teams.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+            <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">
               Deep dives on attribution, experimentation, lifecycle, and the operating systems behind measurable growth.
             </p>
           </motion.header>
@@ -87,20 +87,20 @@ export const Insights = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-            className="rounded-[36px] bg-black p-6 text-white"
+            className="rounded-[28px] bg-black p-5 text-white sm:rounded-[36px] sm:p-6"
           >
             <BookOpen size={24} className="text-brand-yellow" />
-            <div className="mt-20 text-5xl font-semibold">{posts.length}</div>
-            <p className="mt-3 max-w-sm text-lg leading-8 text-white/58">technical notes across measurement, data science, and strategy.</p>
+            <div className="mt-12 text-4xl sm:mt-20 sm:text-5xl font-semibold">{posts.length}</div>
+            <p className="mt-3 max-w-sm text-base leading-7 text-white/58 sm:text-lg sm:leading-8">technical notes across measurement, data science, and strategy.</p>
           </motion.div>
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
           <motion.article {...fadeIn} className="mb-5 overflow-hidden rounded-[34px] border border-black/10 bg-white p-4 shadow-[0_18px_70px_rgba(35,31,24,0.06)]">
             <Link to={`/insights/${featured.id}`} className="grid grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="relative min-h-[360px] overflow-hidden rounded-[28px] bg-black">
+              <div className="relative min-h-[240px] sm:min-h-[360px] overflow-hidden rounded-[28px] bg-black">
                 <img src={featured.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/58 via-black/12 to-transparent" />
                 <span className="absolute bottom-5 left-5 rounded-full bg-white/16 px-3 py-1.5 text-xs font-semibold uppercase text-white backdrop-blur-md">
@@ -115,8 +115,8 @@ export const Insights = () => {
                     <span>{featured.date}</span>
                     <span className="inline-flex items-center gap-1"><Clock size={14} /> {featured.readTime}</span>
                   </div>
-                  <h2 className="max-w-3xl text-[clamp(2.15rem,3.6vw,3.8rem)] font-semibold leading-[0.98]">{featured.title}</h2>
-                  <p className="mt-6 max-w-2xl text-lg leading-8 text-black/58">
+                  <h2 className="max-w-3xl text-[clamp(1.85rem,8.4vw,2.45rem)] font-semibold leading-[1] sm:text-[clamp(2.15rem,3.6vw,3.8rem)] sm:leading-[0.98]">{featured.title}</h2>
+                  <p className="mt-6 max-w-2xl text-base leading-7 text-black/58 sm:text-lg sm:leading-8">
                     A technical breakdown of the infrastructure and methodology required to keep measurement useful in a privacy-first era.
                   </p>
                 </div>

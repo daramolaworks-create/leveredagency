@@ -102,7 +102,7 @@ export const CaseStudyDetail = () => {
 
   if (!study) {
     return (
-      <div className="bg-[#f7f4ee] px-5 py-40 text-center">
+      <div className="bg-[#f7f4ee] px-4 py-32 text-center">
         <p className="text-lg font-semibold">Case study not found.</p>
         <Link to="/case-studies" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-purple">
           <ArrowLeft size={16} />
@@ -114,7 +114,7 @@ export const CaseStudyDetail = () => {
 
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto max-w-[1480px]">
           <Link to="/case-studies" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-black/52 transition-colors hover:text-black">
@@ -126,27 +126,27 @@ export const CaseStudyDetail = () => {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+              className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
             >
               <p className="mb-6 text-sm font-semibold uppercase text-brand-purple">{study.client}</p>
-              <h1 className="max-w-5xl text-[clamp(2.75rem,5vw,5.35rem)] font-semibold leading-[0.94]">
+              <h1 className="max-w-5xl text-[clamp(2rem,9vw,2.55rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5vw,5.35rem)] sm:leading-[0.94]">
                 {study.title}
               </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">{study.result}</p>
+              <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{study.result}</p>
             </motion.header>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-              className="relative min-h-[420px] overflow-hidden rounded-[36px] bg-black"
+              className="relative min-h-[300px] sm:min-h-[420px] overflow-hidden rounded-[28px] bg-black sm:rounded-[36px]"
             >
               <img src={study.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/14 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
+              <div className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 sm:bottom-6 sm:left-6 sm:right-6 sm:gap-3">
                 {study.metrics.map((metric) => (
-                  <div key={metric.label} className="rounded-2xl border border-white/15 bg-white/14 p-4 text-white backdrop-blur-md">
-                    <div className="text-3xl font-semibold">{metric.value}</div>
+                  <div key={metric.label} className="rounded-2xl border border-white/15 bg-white/14 p-3 text-white backdrop-blur-md sm:p-4">
+                    <div className="text-2xl font-semibold sm:text-3xl">{metric.value}</div>
                     <p className="mt-2 text-xs leading-5 text-white/58">{metric.label}</p>
                   </div>
                 ))}
@@ -156,7 +156,7 @@ export const CaseStudyDetail = () => {
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[1fr_0.42fr]">
           <div className="space-y-5">
             {[

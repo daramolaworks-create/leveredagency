@@ -35,23 +35,23 @@ const fadeIn = {
 export const Experiments = () => {
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1fr_0.72fr]">
           <motion.header
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+            className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
           >
             <p className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase text-brand-purple">
               <FlaskConical size={16} />
               Experiments
             </p>
-            <h1 className="max-w-5xl text-[clamp(2.85rem,5.2vw,5.6rem)] font-semibold leading-[0.94]">
+            <h1 className="max-w-5xl text-[clamp(2.05rem,9.5vw,2.7rem)] font-semibold leading-[1] sm:text-[clamp(2.85rem,5.2vw,5.6rem)] sm:leading-[0.94]">
               The lab behind cleaner growth decisions.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+            <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">
               We run structured experiments across acquisition, conversion, and retention so growth decisions are based on signal, not opinion.
             </p>
           </motion.header>
@@ -60,16 +60,16 @@ export const Experiments = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-            className="rounded-[36px] bg-black p-6 text-white"
+            className="rounded-[28px] bg-black p-5 text-white sm:rounded-[36px] sm:p-6"
           >
             <LineChartIcon size={24} className="text-brand-yellow" />
-            <div className="mt-20 text-5xl font-semibold">150+</div>
-            <p className="mt-3 max-w-sm text-lg leading-8 text-white/58">active experiments across growth systems.</p>
+            <div className="mt-12 text-4xl sm:mt-20 sm:text-5xl font-semibold">150+</div>
+            <p className="mt-3 max-w-sm text-base leading-7 text-white/58 sm:text-lg sm:leading-8">active experiments across growth systems.</p>
           </motion.div>
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
           <motion.div {...fadeIn} className="overflow-hidden rounded-[34px] border border-black/10 bg-white p-4 shadow-[0_18px_70px_rgba(35,31,24,0.06)]">
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.85fr_1.15fr]">
@@ -116,7 +116,7 @@ export const Experiments = () => {
                   <p className="text-sm font-semibold text-white/58">Conversion rate over time</p>
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold">Live</span>
                 </div>
-                <div className="h-[320px] w-full min-w-0">
+                <div className="h-[250px] sm:h-[320px] w-full min-w-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={experimentData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
@@ -140,7 +140,7 @@ export const Experiments = () => {
             <motion.div {...fadeIn} className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="mb-4 text-sm font-semibold uppercase text-brand-purple">Recent findings</p>
-                <h2 className="text-[clamp(2.3rem,3.8vw,4.25rem)] font-semibold leading-[0.98]">Signals worth acting on.</h2>
+                <h2 className="text-[clamp(2rem,9vw,2.65rem)] font-semibold leading-[1] sm:text-[clamp(2.3rem,3.8vw,4.25rem)] sm:leading-[0.98]">Signals worth acting on.</h2>
               </div>
               <Link to="/methodology" className="inline-flex items-center gap-2 text-sm font-semibold text-black transition-colors hover:text-brand-purple">
                 Our methodology

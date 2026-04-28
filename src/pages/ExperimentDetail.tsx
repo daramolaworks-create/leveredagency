@@ -132,7 +132,7 @@ export const ExperimentDetail = () => {
 
   if (!experiment) {
     return (
-      <div className="bg-[#f7f4ee] px-5 py-40 text-center">
+      <div className="bg-[#f7f4ee] px-4 py-32 text-center">
         <p className="text-lg font-semibold">Experiment not found.</p>
         <Link to="/experiments" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-purple">
           <ArrowLeft size={16} />
@@ -144,7 +144,7 @@ export const ExperimentDetail = () => {
 
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto max-w-[1480px]">
           <Link to="/experiments" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-black/52 transition-colors hover:text-black">
@@ -157,25 +157,25 @@ export const ExperimentDetail = () => {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+              className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
             >
               <p className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase text-brand-purple">
                 <FlaskConical size={16} />
                 EXP-{experiment.number} / {experiment.category}
               </p>
-              <h1 className="max-w-5xl text-[clamp(2.75rem,5vw,5.35rem)] font-semibold leading-[0.94]">{experiment.title}</h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">{experiment.summary}</p>
+              <h1 className="max-w-5xl text-[clamp(2rem,9vw,2.55rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5vw,5.35rem)] sm:leading-[0.94]">{experiment.title}</h1>
+              <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{experiment.summary}</p>
             </motion.header>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-              className="relative min-h-[420px] overflow-hidden rounded-[36px] bg-black"
+              className="relative min-h-[300px] sm:min-h-[420px] overflow-hidden rounded-[28px] bg-black sm:rounded-[36px]"
             >
               <img src={experiment.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/68 via-black/18 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
                 <span className={cn(
                   'rounded-full px-3 py-1.5 text-xs font-semibold uppercase',
                   experiment.status === 'Winner' && 'bg-green-100 text-green-700',
@@ -184,19 +184,19 @@ export const ExperimentDetail = () => {
                 )}>
                   {experiment.status}
                 </span>
-                <div className="mt-4 text-6xl font-semibold text-white">{experiment.result}</div>
+                <div className="mt-4 text-5xl font-semibold text-white sm:text-6xl">{experiment.result}</div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <motion.section {...fadeIn} className="rounded-[34px] border border-black/10 bg-white p-7 md:p-9">
             <p className="text-sm font-semibold uppercase text-brand-purple">Hypothesis</p>
             <h2 className="mt-4 text-3xl font-semibold">What we tested</h2>
-            <p className="mt-5 text-lg leading-8 text-black/62">{experiment.hypothesis}</p>
+            <p className="mt-5 text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{experiment.hypothesis}</p>
 
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
               {experiment.metrics.map(([label, value]) => (
@@ -213,7 +213,7 @@ export const ExperimentDetail = () => {
               <p className="text-sm font-semibold text-white/58">Experiment readout</p>
               <BarChart3 size={20} className="text-brand-yellow" />
             </div>
-            <div className="h-[320px] w-full min-w-0">
+            <div className="h-[250px] sm:h-[320px] w-full min-w-0">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={experiment.data} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />

@@ -70,7 +70,7 @@ function LegalPage({
 
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto max-w-[1180px]">
           <Link to="/" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-black/52 transition-colors hover:text-black">
@@ -78,19 +78,19 @@ function LegalPage({
             Back home
           </Link>
 
-          <header className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12">
+          <header className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12">
             <p className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase text-brand-purple">
               <Icon size={17} />
               {type}
             </p>
-            <h1 className="max-w-5xl text-[clamp(2.75rem,5vw,5.35rem)] font-semibold leading-[0.94]">{title}</h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">{intro}</p>
+            <h1 className="max-w-5xl text-[clamp(2.15rem,9.8vw,2.9rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5vw,5.35rem)] sm:leading-[0.94]">{title}</h1>
+            <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{intro}</p>
             <p className="mt-8 border-t border-black/10 pt-5 text-sm font-semibold text-black/38">Last updated: April 28, 2026</p>
           </header>
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-8 lg:grid-cols-[1fr_0.35fr]">
           <article className="rounded-[34px] border border-black/10 bg-white p-7 md:p-10">
             <div className="space-y-10">
@@ -98,7 +98,7 @@ function LegalPage({
                 <section key={section.title} className="border-b border-black/10 pb-10 last:border-b-0 last:pb-0">
                   <span className="text-sm font-semibold text-brand-purple">0{index + 1}</span>
                   <h2 className="mt-4 text-3xl font-semibold">{section.title}</h2>
-                  <p className="mt-5 text-lg leading-8 text-black/62">{section.body}</p>
+                  <p className="mt-5 text-base leading-7 text-black/62 sm:text-lg sm:leading-8">{section.body}</p>
                 </section>
               ))}
             </div>

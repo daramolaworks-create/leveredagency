@@ -76,7 +76,7 @@ const fadeIn = {
 
 function ImagePanel({ src, label }: { src: string; label: string }) {
   return (
-    <div className="relative min-h-[320px] overflow-hidden rounded-[30px] bg-black">
+    <div className="relative min-h-[230px] sm:min-h-[320px] overflow-hidden rounded-[30px] bg-black">
       <img src={src} alt="" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/58 via-black/12 to-transparent" />
       <div className="absolute inset-x-5 bottom-5 flex items-center justify-between rounded-2xl border border-white/20 bg-white/16 px-4 py-3 text-white backdrop-blur-md">
@@ -123,20 +123,20 @@ function MethodModel() {
 export const Methodology = () => {
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-5 pb-16 pt-32 sm:px-8 md:pt-40 lg:px-10">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-40 lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(88,55,194,0.15),transparent_30%),radial-gradient(circle_at_82%_0%,rgba(116,189,248,0.18),transparent_28%)]" />
         <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1fr_0.72fr]">
           <motion.header
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="rounded-[36px] border border-black/10 bg-white/62 p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
+            className="rounded-[28px] border border-black/10 bg-white/62 p-5 sm:rounded-[36px] sm:p-7 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl md:p-10 lg:p-12"
           >
             <p className="mb-6 text-sm font-semibold uppercase text-brand-purple">Methodology</p>
-            <h1 className="max-w-5xl text-[clamp(2.85rem,5.2vw,5.6rem)] font-semibold leading-[0.94]">
+            <h1 className="max-w-5xl text-[clamp(2.05rem,9.5vw,2.7rem)] font-semibold leading-[1] sm:text-[clamp(2.85rem,5.2vw,5.6rem)] sm:leading-[0.94]">
               A cleaner operating system for growth.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+            <p className="mt-7 max-w-2xl text-base leading-7 text-black/62 sm:text-lg sm:leading-8">
               Our methodology turns growth from scattered activity into a repeatable cadence: audit the truth, clean the signal, test the highest-leverage ideas, and operationalize what works.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -180,16 +180,16 @@ export const Methodology = () => {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 md:py-28 lg:px-10">
+      <section className="px-4 py-16 sm:px-8 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
           <motion.div {...fadeIn} className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
             <div>
               <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">The framework</p>
-              <h2 className="text-[clamp(2.45rem,4.4vw,4.8rem)] font-semibold leading-[0.96]">
+              <h2 className="text-[clamp(2.05rem,9.5vw,2.75rem)] font-semibold leading-[1] sm:text-[clamp(2.45rem,4.4vw,4.8rem)] sm:leading-[0.96]">
                 Four phases, one operating rhythm.
               </h2>
             </div>
-            <p className="text-lg leading-8 text-black/58">
+            <p className="text-base leading-7 text-black/58 sm:text-lg sm:leading-8">
               The work is structured enough to be repeatable, but flexible enough to adapt to your stage, channels, and data maturity.
             </p>
           </motion.div>
@@ -228,14 +228,14 @@ export const Methodology = () => {
         </div>
       </section>
 
-      <section className="bg-[#111111] px-5 py-20 text-white sm:px-8 md:py-24 lg:px-10">
+      <section className="bg-[#111111] px-4 py-16 text-white sm:px-8 md:py-24 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <motion.div {...fadeIn}>
             <p className="mb-5 text-sm font-semibold uppercase text-brand-yellow">System integrity</p>
-            <h2 className="text-[clamp(2.45rem,4.2vw,4.7rem)] font-semibold leading-[0.96]">
+            <h2 className="text-[clamp(2.05rem,9.5vw,2.75rem)] font-semibold leading-[1] sm:text-[clamp(2.45rem,4.2vw,4.7rem)] sm:leading-[0.96]">
               The method is only useful when the signal is clean.
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/58">
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
               We build with measurement discipline first, then layer experimentation and automation on top of data the team can trust.
             </p>
           </motion.div>
@@ -262,14 +262,14 @@ export const Methodology = () => {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 md:py-24 lg:px-10">
+      <section className="px-4 py-16 sm:px-8 md:py-24 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <motion.div {...fadeIn}>
             <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">Technology layer</p>
-            <h2 className="text-[clamp(2.35rem,4vw,4.45rem)] font-semibold leading-[0.98]">
+            <h2 className="text-[clamp(2.05rem,9.5vw,2.75rem)] font-semibold leading-[1] sm:text-[clamp(2.35rem,4vw,4.45rem)] sm:leading-[0.98]">
               A stack designed for decision velocity.
             </h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-black/58">
+            <p className="mt-5 max-w-xl text-base leading-7 text-black/58 sm:text-lg sm:leading-8">
               We work across your existing tools, then add the integrations needed to make data move cleanly from observation to action.
             </p>
           </motion.div>
@@ -292,11 +292,11 @@ export const Methodology = () => {
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-8 md:pb-24 lg:px-10">
+      <section className="px-4 pb-16 sm:px-8 md:pb-24 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 rounded-[32px] bg-white p-7 shadow-[0_20px_70px_rgba(35,31,24,0.07)] md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="mb-4 text-sm font-semibold uppercase text-brand-purple">Start here</p>
-            <h2 className="max-w-4xl text-[clamp(2.3rem,3.8vw,4.25rem)] font-semibold leading-[0.98]">
+            <h2 className="max-w-4xl text-[clamp(2rem,9vw,2.65rem)] font-semibold leading-[1] sm:text-[clamp(2.3rem,3.8vw,4.25rem)] sm:leading-[0.98]">
               Audit the system before you scale it.
             </h2>
           </div>
