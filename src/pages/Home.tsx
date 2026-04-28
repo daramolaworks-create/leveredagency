@@ -147,14 +147,14 @@ function PhotoPanel({
 
 function LiveForecastModel() {
   return (
-    <div className="col-span-5 row-span-2 overflow-hidden rounded-[28px] bg-black p-5 text-white sm:col-span-2 sm:row-span-3">
-      <div className="flex h-full min-h-[260px] flex-col">
+    <div className="col-span-1 row-span-1 overflow-hidden rounded-[24px] bg-black p-4 text-white sm:col-span-2 sm:row-span-3 sm:rounded-[28px] sm:p-5">
+      <div className="flex h-full min-h-[230px] flex-col sm:min-h-[260px]">
         <div className="flex items-center justify-between">
           <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold">Live model</span>
           <BarChart3 size={22} className="text-brand-yellow" />
         </div>
 
-        <div className="mt-8 grid grid-cols-[auto_1fr] items-end gap-5">
+        <div className="mt-7 grid grid-cols-[auto_1fr] items-end gap-4 sm:mt-8 sm:gap-5">
           <div>
             <div className="text-5xl font-semibold leading-none sm:text-6xl">94%</div>
             <p className="mt-2 max-w-36 text-sm leading-5 text-white/58">forecast confidence</p>
@@ -200,8 +200,8 @@ function LiveForecastModel() {
 
 function ModelCadenceCard() {
   return (
-    <div className="col-span-2 row-span-2 overflow-hidden rounded-[28px] border border-black/10 bg-white p-5">
-      <div className="flex h-full min-h-[210px] flex-col justify-between">
+    <div className="col-span-1 row-span-1 overflow-hidden rounded-[24px] border border-black/10 bg-white p-5 sm:col-span-2 sm:row-span-2 sm:rounded-[28px]">
+      <div className="flex h-full min-h-[190px] flex-col justify-between sm:min-h-[210px]">
         <div className="flex items-center justify-between">
           <span className="text-xs font-semibold uppercase text-black/42">Cadence</span>
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-purple text-white">
@@ -237,33 +237,33 @@ function ModelCadenceCard() {
 
 function GeneratedModelPanel({ className }: { className?: string }) {
   return (
-    <div className={cn('relative overflow-hidden bg-[#f7f4ee] p-6 text-black', className)}>
+    <div className={cn('relative overflow-hidden bg-[#f7f4ee] p-4 text-black sm:p-6', className)}>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(116,189,248,0.45),transparent_24rem),radial-gradient(circle_at_82%_65%,rgba(88,55,194,0.34),transparent_22rem)]" />
-      <div className="relative flex h-full min-h-[460px] flex-col justify-between">
+      <div className="relative flex h-full min-h-[380px] flex-col justify-between sm:min-h-[460px]">
         <div className="flex items-center justify-between">
           <span className="rounded-full bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase text-black/55">Generated model</span>
           <span className="rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white">Live</span>
         </div>
 
-        <div className="mx-auto grid w-full max-w-xl grid-cols-3 gap-3">
+        <div className="mx-auto grid w-full max-w-xl grid-cols-3 gap-2 sm:gap-3">
           {[
             ['Signal', '98.7%'],
             ['Lift', '+31%'],
             ['Risk', 'Low'],
           ].map(([label, value]) => (
-            <div key={label} className="rounded-3xl border border-black/10 bg-white/72 p-4 backdrop-blur">
+            <div key={label} className="rounded-2xl border border-black/10 bg-white/72 p-3 backdrop-blur sm:rounded-3xl sm:p-4">
               <div className="text-xs font-semibold uppercase text-black/42">{label}</div>
-              <div className="mt-8 text-2xl font-semibold">{value}</div>
+              <div className="mt-6 text-xl font-semibold sm:mt-8 sm:text-2xl">{value}</div>
             </div>
           ))}
         </div>
 
-        <div className="relative mx-auto h-56 w-full max-w-xl rounded-[30px] border border-black/10 bg-black p-5 text-white shadow-2xl shadow-black/20">
+        <div className="relative mx-auto h-48 w-full max-w-xl rounded-[24px] border border-black/10 bg-black p-4 text-white shadow-2xl shadow-black/20 sm:h-56 sm:rounded-[30px] sm:p-5">
           <div className="mb-5 flex items-center justify-between">
             <span className="text-sm font-semibold text-white/62">Revenue probability curve</span>
             <span className="text-sm font-semibold text-brand-yellow">+24.8%</span>
           </div>
-          <svg className="h-32 w-full" viewBox="0 0 520 160" preserveAspectRatio="none">
+          <svg className="h-24 w-full sm:h-32" viewBox="0 0 520 160" preserveAspectRatio="none">
             <motion.path
               d="M2 132 C66 92 92 118 148 82 C206 42 242 72 304 40 C372 4 420 46 518 18"
               fill="none"
@@ -295,12 +295,12 @@ function GeneratedModelPanel({ className }: { className?: string }) {
 
 function LeveredOSBoard() {
   return (
-    <motion.div {...fadeIn} className="rounded-[34px] border border-white/10 bg-white/[0.05] p-4">
-      <div className="rounded-[26px] bg-[#f7f4ee] p-5 text-black">
-        <div className="mb-7 flex items-center justify-between gap-5">
+    <motion.div {...fadeIn} className="rounded-[28px] border border-white/10 bg-white/[0.05] p-3 sm:rounded-[34px] sm:p-4">
+      <div className="rounded-[24px] bg-[#f7f4ee] p-4 text-black sm:rounded-[26px] sm:p-5">
+        <div className="mb-6 flex items-center justify-between gap-4 sm:mb-7 sm:gap-5">
           <div>
             <p className="w-fit bg-brand-purple/16 px-1 text-sm font-semibold uppercase text-brand-purple">Levered OS</p>
-            <h3 className="mt-2 text-2xl font-semibold">Weekly decision board</h3>
+            <h3 className="mt-2 text-xl font-semibold sm:text-2xl">Weekly decision board</h3>
           </div>
           <span className="rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white">Live</span>
         </div>
@@ -315,7 +315,7 @@ function LeveredOSBoard() {
           ))}
         </div>
 
-        <div className="mt-3 overflow-hidden rounded-[28px] bg-black p-4 text-white">
+        <div className="mt-3 overflow-hidden rounded-[24px] bg-black p-4 text-white sm:rounded-[28px]">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-white/55">Signal quality</p>
@@ -331,7 +331,7 @@ function LeveredOSBoard() {
           </div>
 
           <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_0.55fr]">
-            <div className="relative h-48 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.04] p-4">
+            <div className="relative h-44 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.04] p-4 sm:h-48">
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:42px_42px]" />
               <div className="relative flex items-center justify-between text-xs text-white/48">
                 <span>Revenue forecast</span>
@@ -367,7 +367,7 @@ function LeveredOSBoard() {
               </svg>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1">
               {boardSignals.map((signal) => (
                 <div key={signal.label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3">
                   <div className="flex items-center justify-between text-xs">
@@ -396,39 +396,39 @@ function LeveredOSBoard() {
 export const Home = () => {
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative min-h-screen px-5 pb-8 pt-28 sm:px-8 lg:px-10">
+      <section className="relative px-4 pb-8 pt-28 sm:px-8 lg:min-h-screen lg:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(88,55,194,0.16),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(116,189,248,0.2),transparent_28%),linear-gradient(180deg,#fbfaf7_0%,#f1eee6_100%)]" />
         <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1.03fr_0.97fr]">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="flex min-h-[calc(100vh-9rem)] flex-col justify-end rounded-[36px] border border-black/10 bg-white/55 p-6 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl sm:p-10 lg:p-12"
+            className="flex flex-col justify-end rounded-[28px] border border-black/10 bg-white/55 p-5 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl sm:p-10 lg:min-h-[calc(100vh-9rem)] lg:rounded-[36px] lg:p-12"
           >
-            <div className="mb-auto flex w-fit items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black/65">
+            <div className="mb-12 flex w-fit max-w-full items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-black/65 sm:mb-auto sm:px-4 sm:text-sm">
               <Sparkles size={16} className="text-brand-purple" />
-              Growth systems, designed beautifully
+              <span className="truncate">Growth systems, designed beautifully</span>
             </div>
 
             <div className="max-w-5xl">
-              <h1 className="text-[clamp(3.35rem,7.4vw,7.35rem)] font-semibold leading-[0.92] text-black">
+              <h1 className="text-[clamp(2.75rem,13.5vw,3.45rem)] font-semibold leading-[0.96] text-black sm:text-[clamp(3.35rem,7.4vw,7.35rem)] sm:leading-[0.92]">
                 Scale with signal, not noise.
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-black/62 sm:text-xl">
+              <p className="mt-6 max-w-2xl text-base leading-7 text-black/62 sm:mt-8 sm:text-xl sm:leading-8">
                 Levered builds the measurement, experimentation, and AI operating system behind elegant, accountable growth.
               </p>
 
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-purple"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-black px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-purple sm:w-auto sm:px-7"
                 >
                   Book a growth audit
                   <ArrowUpRight size={18} />
                 </Link>
                 <Link
                   to="/methodology"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-7 py-4 text-sm font-semibold text-black transition-colors hover:bg-white"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-6 py-4 text-sm font-semibold text-black transition-colors hover:bg-white sm:w-auto sm:px-7"
                 >
                   See the method
                   <ArrowRight size={18} />
@@ -441,37 +441,37 @@ export const Home = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-            className="grid min-h-[720px] grid-cols-5 grid-rows-6 gap-4 lg:min-h-[calc(100vh-9rem)]"
+            className="grid grid-cols-1 gap-4 sm:min-h-[720px] sm:grid-cols-5 sm:grid-rows-6 lg:min-h-[calc(100vh-9rem)]"
           >
             <PhotoPanel
               imageClass="photo-placeholder-a"
               imageSrc="/images/global-strategy-team.jpg"
               label="Global strategy"
-              className="col-span-5 row-span-3 sm:col-span-3 sm:row-span-4"
+              className="col-span-1 row-span-1 h-[250px] sm:col-span-3 sm:row-span-4 sm:h-auto"
             />
             <LiveForecastModel />
             <PhotoPanel
               imageClass="photo-placeholder-b"
               imageSrc="/images/conversion-workshop-team.jpg"
               label="Experiment design"
-              className="col-span-3 row-span-2 sm:col-span-2"
+              className="col-span-1 row-span-1 h-[220px] sm:col-span-2 sm:h-auto"
             />
             <ModelCadenceCard />
           </motion.div>
         </div>
       </section>
 
-      <section className="bg-[#f7f4ee] px-5 pb-20 pt-6 sm:px-8 md:pb-28 lg:px-10">
+      <section className="bg-[#f7f4ee] px-4 pb-16 pt-6 sm:px-8 md:pb-28 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
           <motion.div
             {...fadeIn}
-            className="overflow-hidden rounded-[36px] bg-black text-white shadow-[0_24px_90px_rgba(17,17,17,0.18)]"
+            className="overflow-hidden rounded-[28px] bg-black text-white shadow-[0_24px_90px_rgba(17,17,17,0.18)] sm:rounded-[36px]"
           >
             <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]">
-              <div className="flex min-h-[260px] flex-col justify-between border-b border-white/10 p-7 md:p-9 lg:border-b-0 lg:border-r">
+              <div className="flex min-h-[220px] flex-col justify-between border-b border-white/10 p-6 md:p-9 lg:border-b-0 lg:border-r">
                 <div>
                   <p className="text-sm font-semibold uppercase text-brand-yellow">Measured outcomes</p>
-                  <h2 className="mt-5 max-w-xl text-[clamp(2.3rem,4.2vw,4.6rem)] font-semibold leading-[0.96]">
+                  <h2 className="mt-5 max-w-xl text-[clamp(2rem,9.5vw,2.7rem)] font-semibold leading-[1] sm:text-[clamp(2.3rem,4.2vw,4.6rem)] sm:leading-[0.96]">
                     Proof that feels clean, not noisy.
                   </h2>
                 </div>
@@ -485,7 +485,7 @@ export const Home = () => {
                   <div
                     key={metric.label}
                     className={cn(
-                      'relative min-h-[170px] border-white/10 p-7 md:p-9',
+                      'relative min-h-[140px] border-white/10 p-6 md:min-h-[170px] md:p-9',
                       index < 2 && 'sm:border-b',
                       index % 2 === 0 && 'sm:border-r'
                     )}
@@ -502,7 +502,7 @@ export const Home = () => {
                         />
                       ))}
                     </div>
-                    <div className="text-5xl font-semibold leading-none md:text-6xl">{metric.value}</div>
+                    <div className="text-3xl font-semibold leading-none md:text-6xl">{metric.value}</div>
                     <div className="mt-4 text-base text-white/52">{metric.label}</div>
                   </div>
                 ))}
@@ -510,9 +510,9 @@ export const Home = () => {
             </div>
           </motion.div>
 
-          <div className="mt-6 flex flex-col gap-6 rounded-[30px] border border-black/10 bg-white/55 px-6 py-6 backdrop-blur md:flex-row md:items-center md:justify-between md:px-8">
+          <div className="mt-6 flex flex-col gap-5 rounded-[26px] border border-black/10 bg-white/55 px-5 py-6 backdrop-blur md:flex-row md:items-center md:justify-between md:rounded-[30px] md:px-8">
             <p className="max-w-sm text-sm font-semibold uppercase text-black/45">Trusted by teams turning growth into infrastructure</p>
-            <div className="grid grid-cols-2 items-center gap-x-8 gap-y-5 sm:flex sm:flex-wrap sm:justify-end sm:gap-8">
+            <div className="grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:flex sm:flex-wrap sm:justify-end sm:gap-8">
               {clients.map((client) => (
                 <div key={client.name} className="flex min-h-10 items-center justify-start sm:justify-center">
                   <img
@@ -526,14 +526,14 @@ export const Home = () => {
             </div>
           </div>
 
-          <motion.div {...fadeIn} className="mt-20 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+          <motion.div {...fadeIn} className="mt-16 grid grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-[1fr_0.72fr] lg:items-end">
             <div className="max-w-5xl">
-            <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">What we build</p>
-            <h2 className="text-[clamp(2.75rem,5.6vw,5.9rem)] font-semibold leading-[0.96]">
-              A prettier, smarter way to operate growth.
-            </h2>
+              <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">What we build</p>
+              <h2 className="text-[clamp(2.1rem,9.8vw,2.85rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5.6vw,5.9rem)] sm:leading-[0.96]">
+                A prettier, smarter way to operate growth.
+              </h2>
             </div>
-            <p className="text-lg leading-8 text-black/58">
+            <p className="text-base leading-7 text-black/58 sm:text-lg sm:leading-8">
               Strategy, data, design, and execution are composed into one operating rhythm, so growth feels easier to steer.
             </p>
           </motion.div>
@@ -546,13 +546,13 @@ export const Home = () => {
                   key={service.title}
                   {...fadeIn}
                   transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }}
-                  className="group overflow-hidden rounded-[32px] border border-black/10 bg-white p-4 shadow-[0_20px_70px_rgba(35,31,24,0.07)]"
+                  className="group overflow-hidden rounded-[28px] border border-black/10 bg-white p-3 shadow-[0_20px_70px_rgba(35,31,24,0.07)] sm:rounded-[32px] sm:p-4"
                 >
                   <PhotoPanel
                     imageClass={service.imageClass}
                     imageSrc={service.imageSrc}
                     label={service.eyebrow}
-                    className="h-[340px] rounded-[24px]"
+                    className="h-[210px] rounded-[22px] sm:h-[340px] sm:rounded-[24px]"
                   />
                   <div className="p-4 pt-7">
                     <div className="mb-8 flex items-center justify-between">
@@ -561,7 +561,7 @@ export const Home = () => {
                         <Icon size={20} />
                       </span>
                     </div>
-                    <h3 className="text-3xl font-semibold">{service.title}</h3>
+                    <h3 className="text-2xl font-semibold sm:text-3xl">{service.title}</h3>
                     <p className="mt-4 leading-7 text-black/58">{service.text}</p>
                   </div>
                 </motion.article>
@@ -571,14 +571,14 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-[#111111] px-5 py-20 text-white sm:px-8 md:py-28 lg:px-10">
-        <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-[#111111] px-4 py-16 text-white sm:px-8 md:py-28 lg:px-10">
+        <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <motion.div {...fadeIn}>
             <p className="mb-5 text-sm font-semibold uppercase text-brand-yellow">Operating system</p>
-            <h2 className="text-[clamp(2.75rem,5vw,5.4rem)] font-semibold leading-[0.96]">
+            <h2 className="text-[clamp(2.1rem,9.8vw,2.9rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5vw,5.4rem)] sm:leading-[0.96]">
               Make every growth decision feel obvious.
             </h2>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-white/58">
+            <p className="mt-7 max-w-xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
               We connect the messy parts of marketing into one composed system: data quality, model logic, creative velocity, and weekly execution.
             </p>
           </motion.div>
@@ -587,16 +587,16 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 md:py-28 lg:px-10">
+      <section className="bg-white px-4 py-16 sm:px-8 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
-          <motion.div {...fadeIn} className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <motion.div {...fadeIn} className="mb-10 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
             <div>
               <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">System layers</p>
-              <h2 className="text-[clamp(2.75rem,5vw,5.4rem)] font-semibold leading-[0.96]">
+              <h2 className="text-[clamp(2.1rem,9.8vw,2.9rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5vw,5.4rem)] sm:leading-[0.96]">
                 Data, models, and execution in one rhythm.
               </h2>
             </div>
-            <p className="text-lg leading-8 text-black/58">
+            <p className="text-base leading-7 text-black/58 sm:text-lg sm:leading-8">
               The modern growth team does not need more disconnected campaigns. It needs an elegant operating layer that keeps learning.
             </p>
           </motion.div>
@@ -609,15 +609,15 @@ export const Home = () => {
                   key={card.title}
                   {...fadeIn}
                   transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }}
-                  className="rounded-[32px] border border-black/10 bg-[#f7f4ee] p-7"
+                  className="rounded-[28px] border border-black/10 bg-[#f7f4ee] p-6 sm:rounded-[32px] sm:p-7"
                 >
-                  <div className="mb-16 flex items-center justify-between">
+                  <div className="mb-10 flex items-center justify-between sm:mb-16">
                     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-brand-purple">
                       <Icon size={22} />
                     </span>
                     <span className="text-sm font-semibold text-black/35">0{index + 1}</span>
                   </div>
-                  <h3 className="text-3xl font-semibold">{card.title}</h3>
+                  <h3 className="text-2xl font-semibold sm:text-3xl">{card.title}</h3>
                   <p className="mt-4 leading-7 text-black/58">{card.text}</p>
                 </motion.div>
               );
@@ -626,11 +626,11 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-[#f7f4ee] px-5 py-20 sm:px-8 md:py-28 lg:px-10">
-        <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-8 lg:grid-cols-[0.78fr_1.22fr]">
-          <motion.div {...fadeIn} className="rounded-[34px] bg-black p-8 text-white md:p-10">
+      <section className="bg-[#f7f4ee] px-4 py-16 sm:px-8 md:py-28 lg:px-10">
+        <div className="mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:gap-8">
+          <motion.div {...fadeIn} className="rounded-[28px] bg-black p-6 text-white sm:rounded-[34px] md:p-10">
             <p className="mb-5 text-sm font-semibold uppercase text-brand-yellow">How it starts</p>
-            <h2 className="text-[clamp(2.7rem,4.8vw,5.25rem)] font-semibold leading-[0.98]">
+            <h2 className="text-[clamp(2.1rem,9.8vw,2.8rem)] font-semibold leading-[1] sm:text-[clamp(2.7rem,4.8vw,5.25rem)]">
               Four weeks to a sharper growth cadence.
             </h2>
             <Link
@@ -648,13 +648,13 @@ export const Home = () => {
                 key={title}
                 {...fadeIn}
                 transition={{ duration: 0.55, delay: index * 0.06, ease: 'easeOut' }}
-                className="rounded-[32px] border border-black/10 bg-white p-7"
+                className="rounded-[28px] border border-black/10 bg-white p-6 sm:rounded-[32px] sm:p-7"
               >
-                <div className="mb-14 flex items-center justify-between">
+                <div className="mb-10 flex items-center justify-between sm:mb-14">
                   <span className="text-sm font-semibold text-brand-purple">{number}</span>
                   {index === 0 ? <Play size={18} /> : <Check size={18} />}
                 </div>
-                <h3 className="text-3xl font-semibold">{title}</h3>
+                <h3 className="text-2xl font-semibold sm:text-3xl">{title}</h3>
                 <p className="mt-4 leading-7 text-black/58">{detail}</p>
               </motion.div>
             ))}
@@ -662,14 +662,14 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-8 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-[1480px] grid-cols-1 overflow-hidden rounded-[36px] bg-black lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="p-8 text-white md:p-14 lg:p-16">
+      <section className="bg-white px-4 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-[1480px] grid-cols-1 overflow-hidden rounded-[28px] bg-black sm:rounded-[36px] lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="p-6 text-white md:p-14 lg:p-16">
             <p className="mb-5 text-sm font-semibold uppercase text-brand-blue">Limited partner model</p>
-            <h2 className="max-w-4xl text-[clamp(2.9rem,5.6vw,6rem)] font-semibold leading-[0.94]">
+            <h2 className="max-w-4xl text-[clamp(2.1rem,9.8vw,2.9rem)] font-semibold leading-[1] sm:text-[clamp(2.9rem,5.6vw,6rem)] sm:leading-[0.94]">
               Build the growth system your next stage deserves.
             </h2>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/58">
+            <p className="mt-8 max-w-xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
               We take on a small number of partners each quarter so strategy, design, data, and execution stay tightly connected.
             </p>
             <Link

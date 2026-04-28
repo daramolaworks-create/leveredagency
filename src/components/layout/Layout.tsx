@@ -21,10 +21,10 @@ export const Navbar = () => {
  const location = useLocation();
 
   return (
-    <nav className="fixed top-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-[calc(100%-2rem)] max-w-[1180px] z-50 rounded-full border border-black/10 bg-white/76 shadow-[0_18px_60px_rgba(17,17,17,0.08)] backdrop-blur-2xl transition-all duration-300">
-      <div className="h-16 px-3 md:px-3 flex items-center justify-between">
-        <Link to="/" className="flex h-11 items-center rounded-full px-3 transition-colors hover:bg-black/[0.04] group">
-          <img src="/logo.png" alt="Levered" className="h-8 w-auto group-hover:opacity-90 transition-opacity" />
+    <nav className="fixed left-3 right-3 top-3 z-50 max-w-[1180px] rounded-full border border-black/10 bg-white/88 shadow-[0_14px_46px_rgba(17,17,17,0.08)] backdrop-blur-2xl transition-all duration-300 md:left-1/2 md:right-auto md:top-4 md:w-[calc(100%-2rem)] md:-translate-x-1/2">
+      <div className="flex h-14 items-center justify-between px-2 md:h-16 md:px-3">
+        <Link to="/" className="group flex h-10 items-center rounded-full px-3 transition-colors hover:bg-black/[0.04] md:h-11">
+          <img src="/logo.png" alt="Levered" className="h-7 w-auto transition-opacity group-hover:opacity-90 md:h-8" />
         </Link>
 
         {/* Desktop Nav */}
@@ -56,7 +56,7 @@ export const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
