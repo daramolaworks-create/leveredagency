@@ -16,7 +16,13 @@ import {
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
-const clients = ['Northstar', 'Vanguard', 'Nexus', 'Monarch', 'AcmeCorp'];
+const clients = [
+  { name: 'Kraken', logo: '/brands/kraken.png', className: 'max-h-7 max-w-[150px]' },
+  { name: 'Doux', logo: '/brands/doux.png', className: 'max-h-8 max-w-[96px]' },
+  { name: 'Bloc', logo: '/brands/bloc.png', className: 'max-h-9 max-w-[88px]' },
+  { name: 'Tuteria', logo: '/brands/tuteria.png', className: 'max-h-8 max-w-[132px]' },
+  { name: 'Google', logo: '/brands/google.png', className: 'max-h-8 max-w-[128px]' },
+];
 
 const metrics = [
   { value: '3.4x', label: 'ROAS expansion' },
@@ -506,11 +512,16 @@ export const Home = () => {
 
           <div className="mt-6 flex flex-col gap-6 rounded-[30px] border border-black/10 bg-white/55 px-6 py-6 backdrop-blur md:flex-row md:items-center md:justify-between md:px-8">
             <p className="max-w-sm text-sm font-semibold uppercase text-black/45">Trusted by teams turning growth into infrastructure</p>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 sm:flex sm:flex-wrap sm:justify-end sm:gap-10">
+            <div className="grid grid-cols-2 items-center gap-x-8 gap-y-5 sm:flex sm:flex-wrap sm:justify-end sm:gap-8">
               {clients.map((client) => (
-                <span key={client} className="text-xl font-semibold text-black/45">
-                  {client}
-                </span>
+                <div key={client.name} className="flex min-h-10 items-center justify-start sm:justify-center">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className={cn('h-auto w-auto object-contain opacity-55 grayscale transition-all duration-300 hover:opacity-90 hover:grayscale-0', client.className)}
+                    loading="lazy"
+                  />
+                </div>
               ))}
             </div>
           </div>
