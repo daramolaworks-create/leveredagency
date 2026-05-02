@@ -16,12 +16,19 @@ import {
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
-const clients = [
-  { name: 'Kraken', logo: '/brands/kraken.png', className: 'max-h-7 max-w-[150px]' },
-  { name: 'Doux', logo: '/brands/doux.png', className: 'max-h-8 max-w-[96px]' },
-  { name: 'Bloc', logo: '/brands/bloc.png', className: 'max-h-9 max-w-[88px]' },
-  { name: 'Tuteria', logo: '/brands/tuteria.png', className: 'max-h-8 max-w-[132px]' },
-  { name: 'Google', logo: '/brands/google.png', className: 'max-h-8 max-w-[128px]' },
+const partnerLogos = [
+  { name: 'Meta', src: '/partners/meta.svg', className: 'max-h-8 max-w-[140px]' },
+  { name: 'Google', src: '/partners/google.svg', className: 'max-h-9 max-w-[130px]' },
+  { name: 'Nestle', src: '/partners/nestle.svg', className: 'max-h-8 max-w-[132px]' },
+  { name: 'Monzo', src: '/partners/monzo.svg', className: 'max-h-8 max-w-[128px]' },
+  { name: 'Booking.com', src: '/partners/booking.svg', className: 'max-h-7 max-w-[150px]' },
+  { name: 'HSBC', src: '/partners/hsbc.svg', className: 'max-h-8 max-w-[132px]' },
+  { name: 'Current', src: '/partners/current.svg', className: 'max-h-7 max-w-[130px]' },
+  { name: 'Vio Bank', src: '/partners/vio.svg', className: 'max-h-9 max-w-[124px]' },
+  { name: 'Sermo', src: '/partners/sermo.svg', className: 'max-h-8 max-w-[128px]' },
+  { name: 'Criteo', src: '/partners/criteo.svg', className: 'max-h-8 max-w-[132px]' },
+  { name: 'Bank al Etihad', src: '/partners/ethiad.svg', className: 'max-h-10 max-w-[170px]' },
+  { name: 'Tonies', src: '/partners/tonies.svg', className: 'max-h-8 max-w-[132px]' },
 ];
 
 const metrics = [
@@ -29,6 +36,33 @@ const metrics = [
   { value: '$42M', label: 'modeled revenue' },
   { value: '150+', label: 'experiments live' },
   { value: '12ms', label: 'signal latency' },
+];
+
+const heroMetrics = [
+  { value: '28%', label: 'budget reallocated to high-LTV cohorts' },
+  { value: '4 wk', label: 'from audit to weekly decision rhythm' },
+  { value: '150+', label: 'experiments prioritized by model output' },
+];
+
+const heroWorkflow = [
+  {
+    title: 'Capture',
+    text: 'Spend, funnel, cohort, and revenue signals move into one clean view.',
+    icon: Database,
+    accent: 'bg-brand-blue',
+  },
+  {
+    title: 'Decide',
+    text: 'Forecasts turn the next budget, page, and lifecycle move into a short queue.',
+    icon: LineChart,
+    accent: 'bg-brand-yellow',
+  },
+  {
+    title: 'Activate',
+    text: 'Tests ship back into channels and pages with weekly learning loops.',
+    icon: MousePointer2,
+    accent: 'bg-brand-purple',
+  },
 ];
 
 const services = [
@@ -235,6 +269,173 @@ function ModelCadenceCard() {
   );
 }
 
+function HeroWorkflowCard({
+  step,
+  index,
+}: {
+  step: (typeof heroWorkflow)[number];
+  index: number;
+  key?: string;
+}) {
+  const Icon = step.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.18 + index * 0.06, duration: 0.55, ease: 'easeOut' }}
+      className="group rounded-[24px] border border-black/10 bg-white p-4 shadow-[0_16px_46px_rgba(35,31,24,0.06)] transition-transform duration-300 hover:-translate-y-1 sm:rounded-[28px] sm:p-5"
+    >
+      <div className="mb-8 flex items-center justify-between">
+        <span className={cn('h-2 w-12 rounded-full', step.accent)} />
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f3f0e8] text-black transition-colors group-hover:bg-black group-hover:text-white">
+          <Icon size={18} />
+        </span>
+      </div>
+      <div className="flex items-baseline gap-3">
+        <span className="text-sm font-semibold text-black/34">0{index + 1}</span>
+        <h3 className="text-xl font-semibold">{step.title}</h3>
+      </div>
+      <p className="mt-3 text-sm leading-6 text-black/56">{step.text}</p>
+    </motion.div>
+  );
+}
+
+function HeroDecisionPanel() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1, duration: 0.65, ease: 'easeOut' }}
+      className="overflow-hidden rounded-[28px] bg-black p-4 text-white shadow-[0_24px_80px_rgba(17,17,17,0.18)] sm:rounded-[34px] sm:p-5"
+    >
+      <div className="grid min-h-[350px] grid-cols-1 gap-4 md:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative overflow-hidden rounded-[24px] bg-[#f7f4ee] p-5 text-black sm:rounded-[28px]">
+          <img
+            src="/images/hero-levered-os.jpeg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-[50%_26%] opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-black/8 to-transparent" />
+          <div className="relative flex h-full min-h-[260px] flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="rounded-full bg-white/86 px-3 py-1.5 text-xs font-semibold uppercase text-black/56 backdrop-blur">Levered OS</span>
+              <span className="rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white">Live</span>
+            </div>
+            <div className="rounded-[22px] border border-white/24 bg-white/18 p-4 text-white backdrop-blur-xl">
+              <div className="text-sm font-semibold text-white/62">Next best move</div>
+              <div className="mt-2 text-2xl font-semibold leading-tight">Shift budget into high-LTV search cohort</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between rounded-[24px] border border-white/10 bg-white/[0.055] p-5 sm:rounded-[28px]">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-white/48">Decision confidence</p>
+              <div className="mt-2 text-5xl font-semibold leading-none sm:text-6xl">94%</div>
+            </div>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-yellow text-black">
+              <BarChart3 size={21} />
+            </span>
+          </div>
+
+          <div className="mt-8">
+            <div className="mb-3 flex items-center justify-between text-xs text-white/45">
+              <span>Revenue probability</span>
+              <span>Next 28 days</span>
+            </div>
+            <div className="relative h-32 overflow-hidden rounded-[22px] border border-white/10 bg-black/26 p-3">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.052)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.052)_1px,transparent_1px)] bg-[size:34px_34px]" />
+              <svg className="relative h-full w-full" viewBox="0 0 420 140" preserveAspectRatio="none">
+                <path
+                  d="M4 112 C46 84 76 104 112 78 C156 44 190 66 226 42 C278 8 318 34 358 18 C386 8 404 12 416 6 L416 140 L4 140 Z"
+                  fill="url(#heroDecisionFill)"
+                />
+                <motion.path
+                  d="M4 112 C46 84 76 104 112 78 C156 44 190 66 226 42 C278 8 318 34 358 18 C386 8 404 12 416 6"
+                  fill="none"
+                  stroke="url(#heroDecisionLine)"
+                  strokeLinecap="round"
+                  strokeWidth="6"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ delay: 0.45, duration: 1, ease: 'easeOut' }}
+                />
+                <defs>
+                  <linearGradient id="heroDecisionFill" x1="0" x2="0" y1="0" y2="1">
+                    <stop stopColor="#F3C770" stopOpacity="0.44" />
+                    <stop offset="1" stopColor="#F3C770" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="heroDecisionLine" x1="0" x2="1" y1="0" y2="0">
+                    <stop stopColor="#74BDF8" />
+                    <stop offset="0.52" stopColor="#F3C770" />
+                    <stop offset="1" stopColor="#F3C770" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <div className="mt-5 space-y-3">
+            {modelSignals.map((signal) => (
+              <div key={signal.label}>
+                <div className="mb-1.5 flex items-center justify-between text-xs text-white/52">
+                  <span>{signal.label}</span>
+                  <span>{signal.value}</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: signal.width }}
+                    transition={{ delay: 0.35, duration: 0.8, ease: 'easeOut' }}
+                    className={cn('h-full rounded-full', signal.color)}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function HeroInsightStrip() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.16, duration: 0.55, ease: 'easeOut' }}
+      className="grid grid-cols-1 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_16px_50px_rgba(35,31,24,0.06)] md:grid-cols-[0.86fr_1.14fr]"
+    >
+      <div className="border-b border-black/10 p-5 md:border-b-0 md:border-r">
+        <p className="text-xs font-semibold uppercase text-black/42">Weekly readout</p>
+        <div className="mt-3 text-3xl font-semibold leading-none">3 actions</div>
+        <p className="mt-3 text-sm leading-6 text-black/56">A short queue for budget, funnel, and lifecycle moves.</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3">
+        {decisionQueue.map(([title, detail], index) => (
+          <div
+            key={title}
+            className={cn(
+              'min-h-[126px] p-5',
+              index > 0 && 'border-t border-black/10 sm:border-l sm:border-t-0'
+            )}
+          >
+            <div className="mb-5 flex items-center justify-between">
+              <span className="text-xs font-semibold text-black/34">0{index + 1}</span>
+              <span className={cn('h-2 w-8 rounded-full', index === 0 ? 'bg-brand-yellow' : index === 1 ? 'bg-brand-purple' : 'bg-brand-blue')} />
+            </div>
+            <h3 className="text-base font-semibold">{title}</h3>
+            <p className="mt-2 text-sm leading-5 text-black/50">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 function GeneratedModelPanel({ className }: { className?: string }) {
   return (
     <div className={cn('relative overflow-hidden bg-[#f7f4ee] p-4 text-black sm:p-6', className)}>
@@ -396,29 +597,30 @@ function LeveredOSBoard() {
 export const Home = () => {
   return (
     <div className="overflow-hidden bg-[#f7f4ee] text-[#111111]">
-      <section className="relative px-4 pb-8 pt-28 sm:px-8 lg:min-h-screen lg:px-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(88,55,194,0.16),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(116,189,248,0.2),transparent_28%),linear-gradient(180deg,#fbfaf7_0%,#f1eee6_100%)]" />
-        <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[1.03fr_0.97fr]">
+      <section className="relative px-4 pb-12 pt-28 sm:px-8 sm:pb-14 lg:min-h-screen lg:px-10 lg:pb-16">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#fbfaf7_0%,#f1eee6_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_18%_16%,rgba(88,55,194,0.14),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(116,189,248,0.18),transparent_30rem)]" />
+        <div className="relative mx-auto grid max-w-[1480px] grid-cols-1 gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="flex flex-col justify-end rounded-[28px] border border-black/10 bg-white/55 p-5 shadow-[0_24px_80px_rgba(35,31,24,0.08)] backdrop-blur-xl sm:p-10 lg:min-h-[calc(100vh-9rem)] lg:rounded-[36px] lg:p-12"
+            className="flex flex-col justify-between rounded-[28px] border border-black/10 bg-white p-5 shadow-[0_24px_80px_rgba(35,31,24,0.07)] sm:p-8 lg:min-h-[calc(100vh-9rem)] lg:rounded-[34px] lg:p-10 xl:p-12"
           >
-            <div className="mb-12 flex w-fit max-w-full items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-black/65 sm:mb-auto sm:px-4 sm:text-sm">
-              <Sparkles size={16} className="text-brand-purple" />
-              <span className="truncate">Growth systems, designed beautifully</span>
+            <div className="flex w-fit max-w-full items-center gap-2 rounded-full border border-black/10 bg-[#f7f4ee] px-3 py-2 text-xs font-semibold text-black/64 sm:px-4 sm:text-sm">
+              <Sparkles size={16} className="shrink-0 text-brand-purple" />
+              <span className="truncate">Growth operating systems for sharper decisions</span>
             </div>
 
-            <div className="max-w-5xl">
-              <h1 className="text-[clamp(2.75rem,13.5vw,3.45rem)] font-semibold leading-[0.96] text-black sm:text-[clamp(3.35rem,7.4vw,7.35rem)] sm:leading-[0.92]">
-                Scale with signal, not noise.
+            <div className="mt-16 max-w-4xl lg:mt-20">
+              <h1 className="text-[clamp(2.55rem,11.8vw,3.35rem)] font-semibold leading-[1] text-black sm:text-[clamp(3.15rem,5.85vw,5.85rem)] sm:leading-[0.96]">
+                Turn growth data into obvious next moves.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-7 text-black/62 sm:mt-8 sm:text-xl sm:leading-8">
-                Levered builds the measurement, experimentation, and AI operating system behind elegant, accountable growth.
+                Levered builds the measurement, experimentation, and AI operating layer that helps ambitious teams know what to fund, test, and scale next.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
                 <Link
                   to="/contact"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-black px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-purple sm:w-auto sm:px-7"
@@ -428,40 +630,37 @@ export const Home = () => {
                 </Link>
                 <Link
                   to="/methodology"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-6 py-4 text-sm font-semibold text-black transition-colors hover:bg-white sm:w-auto sm:px-7"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-[#f7f4ee] px-6 py-4 text-sm font-semibold text-black transition-colors hover:bg-white sm:w-auto sm:px-7"
                 >
                   See the method
                   <ArrowRight size={18} />
                 </Link>
               </div>
             </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:mt-16">
+              {heroMetrics.map((metric) => (
+                <div key={metric.label} className="rounded-[22px] border border-black/10 bg-[#f7f4ee] p-4">
+                  <div className="text-2xl font-semibold leading-none sm:text-3xl">{metric.value}</div>
+                  <p className="mt-3 text-sm leading-5 text-black/50">{metric.label}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.08, duration: 0.7, ease: 'easeOut' }}
-            className="grid grid-cols-1 gap-4 sm:min-h-[720px] sm:grid-cols-5 sm:grid-rows-6 lg:min-h-[calc(100vh-9rem)]"
-          >
-            <PhotoPanel
-              imageClass="photo-placeholder-a"
-              imageSrc="/images/global-strategy-team.jpg"
-              label="Global strategy"
-              className="col-span-1 row-span-1 h-[250px] sm:col-span-3 sm:row-span-4 sm:h-auto"
-            />
-            <LiveForecastModel />
-            <PhotoPanel
-              imageClass="photo-placeholder-b"
-              imageSrc="/images/conversion-workshop-team.jpg"
-              label="Experiment design"
-              className="col-span-1 row-span-1 h-[220px] sm:col-span-2 sm:h-auto"
-            />
-            <ModelCadenceCard />
-          </motion.div>
+          <div className="flex flex-col gap-4 self-stretch lg:min-h-[calc(100vh-9rem)] lg:justify-between">
+            <HeroDecisionPanel />
+            <HeroInsightStrip />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {heroWorkflow.map((step, index) => (
+                <HeroWorkflowCard key={step.title} step={step} index={index} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="bg-[#f7f4ee] px-4 pb-16 pt-6 sm:px-8 md:pb-28 lg:px-10">
+      <section className="bg-[#f7f4ee] px-4 pb-16 pt-8 sm:px-8 md:pb-28 md:pt-10 lg:px-10">
         <div className="mx-auto max-w-[1480px]">
           <motion.div
             {...fadeIn}
@@ -510,23 +709,55 @@ export const Home = () => {
             </div>
           </motion.div>
 
-          <div className="mt-6 flex flex-col gap-5 rounded-[26px] border border-black/10 bg-white/55 px-5 py-6 backdrop-blur md:flex-row md:items-center md:justify-between md:rounded-[30px] md:px-8">
-            <p className="max-w-sm text-sm font-semibold uppercase text-black/45">Trusted by teams turning growth into infrastructure</p>
-            <div className="grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:flex sm:flex-wrap sm:justify-end sm:gap-8">
-              {clients.map((client) => (
-                <div key={client.name} className="flex min-h-10 items-center justify-start sm:justify-center">
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className={cn('h-auto w-auto object-contain opacity-55 grayscale transition-all duration-300 hover:opacity-90 hover:grayscale-0', client.className)}
-                    loading="lazy"
-                  />
+          <motion.div
+            {...fadeIn}
+            className="mt-6 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_24px_90px_rgba(35,31,24,0.07)] sm:rounded-[36px]"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr]">
+              <div className="flex min-h-[280px] flex-col justify-between border-b border-black/10 bg-[#f7f4ee] p-6 sm:p-9 lg:border-b-0 lg:border-r">
+                <div>
+                  <p className="text-sm font-semibold uppercase text-brand-purple">Partner proof</p>
+                  <h2 className="mt-5 max-w-xl text-[clamp(2.15rem,9.5vw,3rem)] font-semibold leading-[1] text-black sm:text-[clamp(2.7rem,4.7vw,5rem)] sm:leading-[0.96]">
+                    Less risk. More reward.
+                  </h2>
                 </div>
-              ))}
-            </div>
-          </div>
+                <p className="mt-8 max-w-md text-base leading-7 text-black/58">
+                  Familiar operators, sharper systems, and cleaner accountability for every growth decision.
+                </p>
+                <Link
+                  to="/case-studies"
+                  className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-purple"
+                >
+                  View proof
+                  <ArrowRight size={17} />
+                </Link>
+              </div>
 
-          <motion.div {...fadeIn} className="mt-16 grid grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+              <div className="p-6 sm:p-9">
+                <p className="max-w-4xl text-xl font-medium leading-8 text-black/74 sm:text-2xl sm:leading-10">
+                  Adaptive growth teams combine paid media, creative, CRO, lifecycle, and AI measurement into one operating rhythm.
+                </p>
+                <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-black sm:text-xl">
+                  A flexible growth system in days, with performance accountability built in.
+                </p>
+
+                <div className="mt-9 grid grid-cols-2 border-l border-t border-black/10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                  {partnerLogos.map((partner) => (
+                    <div key={partner.name} className="flex min-h-[104px] items-center justify-center border-b border-r border-black/10 bg-white p-5 transition-colors hover:bg-[#f7f4ee] sm:min-h-[118px] sm:p-6">
+                      <img
+                        src={partner.src}
+                        alt={partner.name}
+                        className={cn('h-auto w-auto object-contain', partner.className)}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeIn} className="mt-16 grid grid-cols-1 gap-6 lg:mt-24 lg:grid-cols-[1fr_0.72fr] lg:items-end">
             <div className="max-w-5xl">
               <p className="mb-5 text-sm font-semibold uppercase text-brand-purple">What we build</p>
               <h2 className="text-[clamp(2.1rem,9.8vw,2.85rem)] font-semibold leading-[1] sm:text-[clamp(2.75rem,5.6vw,5.9rem)] sm:leading-[0.96]">
@@ -662,7 +893,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-white px-4 py-8 sm:px-8 lg:px-10">
+      <section className="bg-white px-4 py-16 sm:px-8 md:py-28 lg:px-10">
         <div className="mx-auto grid max-w-[1480px] grid-cols-1 overflow-hidden rounded-[28px] bg-black sm:rounded-[36px] lg:grid-cols-[1.05fr_0.95fr]">
           <div className="p-6 text-white md:p-14 lg:p-16">
             <p className="mb-5 text-sm font-semibold uppercase text-brand-blue">Limited partner model</p>
